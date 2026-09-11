@@ -237,7 +237,7 @@
                     <height>404</height>
                     <fadetime>PosterFanartFadetime</fadetime>
                     <aspectratio aligny="center" align="center" scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImage]</texture>
+                    <texture background="true">$VAR[PosterImage]</texture>
                 </control>
             </control>
             <control type="group">
@@ -290,7 +290,7 @@
                     <height>539</height>
                     <fadetime>PosterFanartFadetime</fadetime>
                     <aspectratio aligny="center" align="center" scalediffuse="false">scale</aspectratio>
-                    <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImage]</texture>
+                    <texture background="true">$VAR[PosterImage]</texture>
                 </control>
                 <control type="image">
                     <left>-1</left>

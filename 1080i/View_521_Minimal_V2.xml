@@ -40,6 +40,7 @@
         <focusedlayout height="325" width="222" condition="!Skin.HasSetting(521.alternative)">
             <include content="include.widget.poster.focus">
                 <param name="id" value="521"/>
+                <param name="zoom" value="120"/>
                 <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
             </include>
             <include condition="Skin.HasSetting(home.netflix.autoplay.trailer)">SetAutoTrailerControl</include>
@@ -58,7 +59,7 @@
             </control>
             <include content="include.widget.poster.focus">
                 <param name="id" value="521"/>
-                <param name="zoom" value="115"/>
+                <param name="zoom" value="120"/>
                 <param name="zoom_condition" value="Skin.HasSetting(521.alternative)"/>
                 <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
             </include>
@@ -84,6 +85,15 @@
             <include>Animation.Common</include>
             <include>ViewSlideForJumpBar</include>
             <visible>Control.IsVisible(521)</visible>
+            <!-- AKL gameplay trailer: upper-right preview panel -->
+            <control type="videowindow">
+                <left>980</left>
+                <top>45</top>
+                <width>820</width>
+                <height>461</height>
+                <aspectratio align="center" aligny="center">scale</aspectratio>
+                <visible>Skin.HasSetting(akl.autoplay.trailer) + $EXP[AKLGameBrowse] + Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
+            </control>
             <include>View_522_Minimal_V2_Content</include>
             <control type="scrollbar" id="1611">
                 <include content="scrollbar_hor">

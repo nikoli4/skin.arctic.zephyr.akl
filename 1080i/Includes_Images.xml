@@ -111,6 +111,10 @@
     </variable>
 
     <variable name="PosterImage">
+        <value condition="$EXP[AKLGameArtItem] + String.IsEqual(ListItem.Property(akl_art_mode),cartridge) + !String.IsEmpty(ListItem.Art(cartridge))">$INFO[ListItem.Art(cartridge)]</value>
+        <value condition="$EXP[AKLGameArtItem] + String.IsEqual(ListItem.Property(akl_art_mode),3dbox) + !String.IsEmpty(ListItem.Art(3dbox))">$INFO[ListItem.Art(3dbox)]</value>
+        <value condition="$EXP[AKLGameBrowse] + !String.IsEmpty(ListItem.Art(boxfront))">$INFO[ListItem.Art(boxfront)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(animatedposter)) + Skin.HasSetting(furniture.animatedposters)">$INFO[ListItem.Art(animatedposter)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(keyart)) + Skin.HasSetting(global.use.keyart)">$INFO[ListItem.Art(keyart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(season.poster)) + !Window.IsVisible(Home)">$INFO[ListItem.Art(season.poster)]</value>
@@ -152,7 +156,28 @@
         <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
     </variable>
 
+    <variable name="AKLFanartImage">
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(snap))">$INFO[ListItem.Art(snap)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(title))">$INFO[ListItem.Art(title)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+    </variable>
+
+    <variable name="AKLGameImage">
+        <value condition="$EXP[AKLGameArtItem] + String.IsEqual(ListItem.Property(akl_art_mode),cartridge) + !String.IsEmpty(ListItem.Art(cartridge))">$INFO[ListItem.Art(cartridge)]</value>
+        <value condition="$EXP[AKLGameArtItem] + String.IsEqual(ListItem.Property(akl_art_mode),3dbox) + !String.IsEmpty(ListItem.Art(3dbox))">$INFO[ListItem.Art(3dbox)]</value>
+        <value condition="$EXP[AKLGameBrowse] + !String.IsEmpty(ListItem.Art(boxfront))">$INFO[ListItem.Art(boxfront)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(title))">$INFO[ListItem.Art(title)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(snap))">$INFO[ListItem.Art(snap)]</value>
+        <value>$VAR[PosterImageSquare]</value>
+    </variable>
+
     <variable name="PosterImageSquare">
+        <value condition="$EXP[AKLGameArtItem] + String.IsEqual(ListItem.Property(akl_art_mode),cartridge) + !String.IsEmpty(ListItem.Art(cartridge))">$INFO[ListItem.Art(cartridge)]</value>
+        <value condition="$EXP[AKLGameArtItem] + String.IsEqual(ListItem.Property(akl_art_mode),3dbox) + !String.IsEmpty(ListItem.Art(3dbox))">$INFO[ListItem.Art(3dbox)]</value>
+        <value condition="$EXP[AKLGameBrowse] + !String.IsEmpty(ListItem.Art(boxfront))">$INFO[ListItem.Art(boxfront)]</value>
+        <value condition="$EXP[InGameMode] + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
         <value condition="!String.IsEmpty(Skin.String(genre.icons.path)) + String.IsEqual(ListItem.DBType,genre)">$VAR[ThumbImageGenres]</value>
         <value condition="!String.IsEmpty(Skin.String(studio.logos.path)) + String.IsEqual(ListItem.DBTYPE,studio)">$INFO[Skin.String(studio.logos.path),,/]$INFO[ListItem.Label,,.png]</value>
         <value condition="!String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
@@ -165,6 +190,9 @@
     </variable>
 
     <variable name="WidgetImage">
+        <value condition="String.Contains(Container(301).ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(Container(301).ListItem.Art(boxfront))">$INFO[Container(301).ListItem.Art(boxfront)]</value>
+        <value condition="String.Contains(Container(301).ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(Container(301).ListItem.Art(poster))">$INFO[Container(301).ListItem.Art(poster)]</value>
+        <value condition="String.Contains(Container(301).ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(Container(301).ListItem.Art(title))">$INFO[Container(301).ListItem.Art(title)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(keyart)) + Skin.HasSetting(global.use.keyart) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Square) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail) + !String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart)">$INFO[Container(301).ListItem.Art(keyart)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(tvshow.poster))">$INFO[Container(301).ListItem.Art(tvshow.poster)]</value>
         <value condition="!String.IsEmpty(Container(301).ListItem.Art(poster))">$INFO[Container(301).ListItem.Art(poster)]</value>
@@ -267,6 +295,9 @@
     </variable>
 
     <variable name="WidgetThumbImage">
+        <value condition="String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(ListItem.Art(boxfront))">$INFO[ListItem.Art(boxfront)]</value>
+        <value condition="String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+        <value condition="String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(ListItem.Art(title))">$INFO[ListItem.Art(title)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + String.IsEqual(Container(300).ListItem.Property(widgetaspect),Fanart)">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(thumb)) + String.IsEqual(Container(300).ListItem.Property(widgetaspect),Thumbnail)">$INFO[ListItem.Art(thumb)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
@@ -286,6 +317,9 @@
     </variable>
 
     <variable name="WidgetThumbnailImage">
+        <value condition="String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(ListItem.Art(boxfront))">$INFO[ListItem.Art(boxfront)]</value>
+        <value condition="String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
+        <value condition="String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) + !String.IsEmpty(ListItem.Art(title))">$INFO[ListItem.Art(title)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(fanart)) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow)]">$INFO[ListItem.Art(fanart)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
         <value condition="!String.IsEmpty(ListItem.Thumb)">$INFO[ListItem.Thumb]</value>
