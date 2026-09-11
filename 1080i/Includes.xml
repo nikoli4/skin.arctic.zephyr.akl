@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- Foundation -->
 <includes>
     <include file="Defaults.xml"/>
@@ -49,6 +49,7 @@
     <include file="View_522_Minimal_V2_Episodes.xml"/>
     <include file="View_524_Minimal_V2_Seasons.xml"/>
     <include file="View_527_List_V2.xml"/>
+    <include file="View_528_Showcase_AKL.xml"/>
     <include file="Includes_Furniture.xml"/>
     <include file="Includes_Home.xml"/>
     <include file="Includes_Labels.xml"/>
@@ -81,7 +82,7 @@
     <expression name="Widget6Enabled">String.IsEqual(Container(300).ListItem.Property(widgetEnable.6),yes)</expression>
     <expression name="HasHomemenuAutoSlideOutAnimation">Skin.HasSetting(homemenu.slide) + !Skin.HasSetting(only.hide.if.widgetcontainer.gets.focus) + [[$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)] | [$EXP[HomeIsVerticalMultiWidgets] + !Skin.HasSetting(homemenu.vertical.noslide)]]</expression>
     <expression name="HasHomemenuAutoSlideOutAnimationOnlyIfWidgetIsFocused">[Skin.HasSetting(homemenu.slide) + [$EXP[HomeIsModernMultiWidgets] + !Skin.HasSetting(homemenu.clean.flix)] | [$EXP[HomeIsVerticalMultiWidgets] + !Skin.HasSetting(homemenu.vertical.noslide)] + Skin.HasSetting(only.hide.if.widgetcontainer.gets.focus)]</expression>
-    
+
     <expression name="IsPVRVideo">!Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsPVRAudio">Player.HasAudio + VideoPlayer.Content(livetv)</expression>
     <expression name="IsAudio">Player.HasAudio + !VideoPlayer.Content(livetv)</expression>
@@ -129,15 +130,15 @@
         [Container.Content(tvshows) | Container.Content(seasons) | String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season)]
         + [!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))]
     </expression>
-    
+
     <expression name="IsTVShowInProgress">
         [Container.Content(tvshows) | String.IsEqual(ListItem.DBTYPE,tvshow) | Container.Content(season) | String.IsEqual(ListItem.DBTYPE,season)] + !String.IsEqual(ListItem.Overlay,OverlayWatched.png) + !$EXP[IsNewTVShow] + [[!String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes)) + !String.IsEqual(ListItem.Property(WatchedEpisodes),0) + !String.IsEmpty(ListItem.Property(WatchedEpisodes))] | Integer.IsGreater(ListItem.Property(WatchedEpisodes),0)]
     </expression>
-    
+
     <expression name="IsTVShowInProgress301">
         [Container.Content(tvshows) | String.IsEqual(Container(301).ListItem.DBTYPE,tvshow) | Container.Content(season) | String.IsEqual(Container(301).ListItem.DBTYPE,season)] + !String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png) + Integer.IsGreater(Container(301).ListItem.Property(WatchedEpisodes),0) + !$EXP[IsNewTVShow301]
     </expression>
-    
+
     <expression name="IsNewMovie">
         [Container.Content(movies) | Window.isVisible(Home.xml)]
         + [
@@ -183,7 +184,7 @@
             | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),ListItem.Title)
           ]
     </expression>
-    
+
     <expression name="IsNewMovie301">
         [Container.Content(movies) | Window.isVisible(Home.xml)]
         + [
@@ -231,16 +232,24 @@
     </expression>
 
     <expression name="InGameMode">
-        [ String.Contains(Container.FolderPath,plugin://plugin.program.ael) 
-        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.launcher) 
-        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher) 
-        | String.Contains(Container.FolderPath,plugin://plugin.program.akl) 
-        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.MAME.launcher) 
-        | String.Contains(Container.FolderPath,plugin://plugin.program.iagl) 
-        | Window.IsActive(games) 
-        | Container.Content(games) ]
+        [ String.Contains(Container.FolderPath,plugin://plugin.program.ael)
+        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.launcher)
+        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher)
+        | String.Contains(Container.FolderPath,plugin://plugin.program.akl)
+        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.MAME.launcher)
+        | String.Contains(Container.FolderPath,plugin://plugin.program.iagl)
+        | Window.IsActive(games)
+        | Container.Content(games)
+        | String.IsEqual(Window(10000).Property(AEL_Content),roms)
+        | String.IsEqual(Window(10000).Property(AEL_Content),romcollection) ]
     </expression>
-    
+
+
+
+    <expression name="AKLGameBrowse">
+        $EXP[InGameMode]
+    </expression>
+
     <expression name="SortLetterIsNumber">[String.IsEqual(ListItem.SortLetter,$NUMBER[0]) | String.IsEqual(ListItem.SortLetter,$NUMBER[1]) | String.IsEqual(ListItem.SortLetter,$NUMBER[2]) | String.IsEqual(ListItem.SortLetter,$NUMBER[3]) | String.IsEqual(ListItem.SortLetter,$NUMBER[4]) | String.IsEqual(ListItem.SortLetter,$NUMBER[5]) | String.IsEqual(ListItem.SortLetter,$NUMBER[6]) | String.IsEqual(ListItem.SortLetter,$NUMBER[7]) | String.IsEqual(ListItem.SortLetter,$NUMBER[8]) | String.IsEqual(ListItem.SortLetter,$NUMBER[9])]</expression>
 
     <include name="ScrolltimeDetailsList">
@@ -249,7 +258,7 @@
 
     <include name="ScrolltimeWidgetsList">
         <scrolltime tween="quadratic">300</scrolltime>
-    </include>  
+    </include>
 
     <include name="ScrolltimeWidgetsContainer">
         <scrolltime tween="sine" easing="inout">350</scrolltime>
@@ -322,11 +331,11 @@
         <value condition="String.Contains(ListItem.mpaa,Germany:6)| String.Contains(ListItem.mpaa,ab 6) | String.Contains(ListItem.mpaa,FSK6) | String.Contains(ListItem.mpaa,FSK 6) | String.Contains(ListItem.mpaa,de/6) | String.Contains(ListItem.mpaa,Rated 6)">flags2/rating/info/fsk-6.png</value>
         <value condition="String.Contains(ListItem.mpaa,Germany:12) | String.Contains(ListItem.mpaa,ab 12) | String.Contains(ListItem.mpaa,FSK12) | String.Contains(ListItem.mpaa,FSK 12) | String.Contains(ListItem.mpaa,de/12) | String.Contains(ListItem.mpaa,Rated 12)">flags2/rating/info/fsk-12.png</value>
         <value condition="String.Contains(ListItem.mpaa,Germany:18) | String.Contains(ListItem.mpaa,ab 18) | String.Contains(ListItem.mpaa,FSK18) | String.Contains(ListItem.mpaa,FSK 18) | String.Contains(ListItem.mpaa,de/18) | String.Contains(ListItem.mpaa,Rated 18)">flags2/rating/info/fsk-18.png</value>
-        <value condition="String.Contains(ListItem.mpaa,besorolás alatt)">flags2/rating/info/hu_ba.png</value>
-        <value condition="String.Contains(ListItem.mpaa,korhatárra való tekintett nélkül megtekintetheto)">flags2/rating/info/hu_kn.png</value>
-        <value condition="String.Contains(ListItem.mpaa,12 éven aluliak számára a megtekintése nagykorú felügyelete mellett ajánlott)">flags2/rating/info/hu_12.png</value>
-        <value condition="String.Contains(ListItem.mpaa,16 éven aluliak számára nem ajánlott)">flags2/rating/info/hu_16.png</value>
-        <value condition="String.Contains(ListItem.mpaa,18 éven aluliak számára nem ajánlott)">flags2/rating/info/hu_18.png</value>
+        <value condition="String.Contains(ListItem.mpaa,besorolÃ¡s alatt)">flags2/rating/info/hu_ba.png</value>
+        <value condition="String.Contains(ListItem.mpaa,korhatÃ¡rra valÃ³ tekintett nÃ©lkÃ¼l megtekintetheto)">flags2/rating/info/hu_kn.png</value>
+        <value condition="String.Contains(ListItem.mpaa,12 Ã©ven aluliak szÃ¡mÃ¡ra a megtekintÃ©se nagykorÃº felÃ¼gyelete mellett ajÃ¡nlott)">flags2/rating/info/hu_12.png</value>
+        <value condition="String.Contains(ListItem.mpaa,16 Ã©ven aluliak szÃ¡mÃ¡ra nem ajÃ¡nlott)">flags2/rating/info/hu_16.png</value>
+        <value condition="String.Contains(ListItem.mpaa,18 Ã©ven aluliak szÃ¡mÃ¡ra nem ajÃ¡nlott)">flags2/rating/info/hu_18.png</value>
         <value condition="String.Contains(ListItem.mpaa,FR:U) | String.Contains(ListItem.mpaa,France:U) | String.Contains(ListItem.mpaa,Tout public) | String.Contains(ListItem.mpaa,Tous public)">flags2/rating/info/csau.png</value>
         <value condition="String.Contains(ListItem.mpaa,FR:10) | String.Contains(ListItem.mpaa,France:10) | String.Contains(ListItem.mpaa,France:-10) | String.Contains(ListItem.mpaa,Interdit aux moins de 10 ans) | String.Contains(ListItem.mpaa,des propos ou des images peuvent heurter)">flags2/rating/info/csa10.png</value>
         <value condition="String.Contains(ListItem.mpaa,FR:12) | String.Contains(ListItem.mpaa,France:12) | String.Contains(ListItem.mpaa,France:-12) | String.Contains(ListItem.mpaa,Interdit aux moins de 12 ans)">flags2/rating/info/csa12.png</value>
@@ -338,11 +347,11 @@
         <value condition="String.Contains(ListItem.mpaa,Brazil:14) | String.Contains(ListItem.mpaa,14 anos)">flags2/rating/info/mpaa_brazil_14.png</value>
         <value condition="String.Contains(ListItem.mpaa,Brazil:16) | String.Contains(ListItem.mpaa,16 anos)">flags2/rating/info/mpaa_brazil_16.png</value>
         <value condition="String.Contains(ListItem.mpaa,Brazil:18) | String.Contains(ListItem.mpaa,18 anos)">flags2/rating/info/mpaa_brazil_18.png</value>
-        <value condition="String.Contains(ListItem.mpaa,전체) | String.Contains(ListItem.mpaa,0) | String.Contains(ListItem.mpaa,ALL)">flags2/rating/info/kr_certificate_all.png</value>
-        <value condition="String.Contains(ListItem.mpaa,12) | String.Contains(ListItem.mpaa,12세)">flags2/rating/info/kr_certificate_12.png</value>
-        <value condition="String.Contains(ListItem.mpaa,15) | String.Contains(ListItem.mpaa,15세)">flags2/rating/info/kr_certificate_15.png</value>
-        <value condition="String.Contains(ListItem.mpaa,18세) | String.Contains(ListItem.mpaa,불가)  | String.Contains(ListItem.mpaa,19) | String.Contains(ListItem.mpaa,청불) | String.Contains(ListItem.mpaa,18)">flags2/rating/info/kr_certificate_18.png</value>
-        <value condition="String.Contains(ListItem.mpaa,제한)">flags2/rating/info/kr_certificate_r.png</value>
+        <value condition="String.Contains(ListItem.mpaa,ì „ì²´) | String.Contains(ListItem.mpaa,0) | String.Contains(ListItem.mpaa,ALL)">flags2/rating/info/kr_certificate_all.png</value>
+        <value condition="String.Contains(ListItem.mpaa,12) | String.Contains(ListItem.mpaa,12ì„¸)">flags2/rating/info/kr_certificate_12.png</value>
+        <value condition="String.Contains(ListItem.mpaa,15) | String.Contains(ListItem.mpaa,15ì„¸)">flags2/rating/info/kr_certificate_15.png</value>
+        <value condition="String.Contains(ListItem.mpaa,18ì„¸) | String.Contains(ListItem.mpaa,ë¶ˆê°€)  | String.Contains(ListItem.mpaa,19) | String.Contains(ListItem.mpaa,ì²­ë¶ˆ) | String.Contains(ListItem.mpaa,18)">flags2/rating/info/kr_certificate_18.png</value>
+        <value condition="String.Contains(ListItem.mpaa,ì œí•œ)">flags2/rating/info/kr_certificate_r.png</value>
         <value>$INFO[ListItem.MPAA,flags2/rating/info/,.png]</value>
     </variable>
 
@@ -371,11 +380,11 @@
         <value condition="String.Contains(ListItem.mpaa,US:NC-17) | String.Contains(ListItem.mpaa,USA:NC-17) | String.Contains(ListItem.mpaa,Rated NC-17) | String.IsEqual(ListItem.MPAA,NC-17)">flags/mpaa/nc-17.png</value>
         <value condition="String.Contains(ListItem.mpaa,Rated NR) | String.IsEqual(ListItem.mpaa,Not Rated)">flags/mpaa/nr.png</value>
         <value condition="String.Contains(ListItem.mpaa,US:R) | String.Contains(ListItem.mpaa,USA:R) | String.Contains(ListItem.mpaa,Rated R) | String.Contains(ListItem.mpaa,Rated) | String.IsEqual(ListItem.mpaa,R)">flags/mpaa/r.png</value>
-        <value condition="String.Contains(ListItem.mpaa,besorolás alatt)">flags/mpaa/hu_ba.png</value>
-        <value condition="String.Contains(ListItem.mpaa,korhatárra való tekintett nélkül megtekintetheto)">flags/mpaa/hu_kn.png</value>
-        <value condition="String.Contains(ListItem.mpaa,12 éven aluliak számára a megtekintése nagykorú felügyelete mellett ajánlott)">flags/mpaa/hu_12.png</value>
-        <value condition="String.Contains(ListItem.mpaa,16 éven aluliak számára nem ajánlott)">flags/mpaa/hu_16.png</value>
-        <value condition="String.Contains(ListItem.mpaa,18 éven aluliak számára nem ajánlott)">flags/mpaa/hu_18.png</value>
+        <value condition="String.Contains(ListItem.mpaa,besorolÃ¡s alatt)">flags/mpaa/hu_ba.png</value>
+        <value condition="String.Contains(ListItem.mpaa,korhatÃ¡rra valÃ³ tekintett nÃ©lkÃ¼l megtekintetheto)">flags/mpaa/hu_kn.png</value>
+        <value condition="String.Contains(ListItem.mpaa,12 Ã©ven aluliak szÃ¡mÃ¡ra a megtekintÃ©se nagykorÃº felÃ¼gyelete mellett ajÃ¡nlott)">flags/mpaa/hu_12.png</value>
+        <value condition="String.Contains(ListItem.mpaa,16 Ã©ven aluliak szÃ¡mÃ¡ra nem ajÃ¡nlott)">flags/mpaa/hu_16.png</value>
+        <value condition="String.Contains(ListItem.mpaa,18 Ã©ven aluliak szÃ¡mÃ¡ra nem ajÃ¡nlott)">flags/mpaa/hu_18.png</value>
         <value condition="String.Contains(ListItem.mpaa,FR:U) | String.Contains(ListItem.mpaa,France:U) | String.Contains(ListItem.mpaa,Tout public) | String.Contains(ListItem.mpaa,Tous public) | String.Contains(ListItem.mpaa,partir de 3 ans) | String.Contains(ListItem.mpaa,partir de 6 ans)">flags/mpaa/csau.png</value>
         <value condition="String.Contains(ListItem.mpaa,FR:10) | String.Contains(ListItem.mpaa,France:10) | String.Contains(ListItem.mpaa,France:-10) | String.Contains(ListItem.mpaa,Interdit aux moins de 10 ans) | String.Contains(ListItem.mpaa,des propos ou des images peuvent heurter)">flags/mpaa/csa10.png</value>
         <value condition="String.Contains(ListItem.mpaa,FR:12) | String.Contains(ListItem.mpaa,France:12) | String.Contains(ListItem.mpaa,France:-12) | String.Contains(ListItem.mpaa,Interdit aux moins de 12 ans)">flags/mpaa/csa12.png</value>
@@ -392,11 +401,11 @@
         <value condition="String.Contains(ListItem.MPAA,Australia:M) | String.Contains(ListItem.MPAA,Australia M)">flags/mpaa/australia_M.png</value>
         <value condition="String.Contains(ListItem.MPAA,Australia:PG) | String.Contains(ListItem.MPAA,Australia PG)">flags/mpaa/australia_PG.png</value>
         <value condition="String.Contains(ListItem.MPAA,Australia:G) | String.Contains(ListItem.MPAA,Australia G)">flags/mpaa/australia_G.png</value>
-        <value condition="String.Contains(ListItem.mpaa,전체) | String.Contains(ListItem.mpaa,0) | String.Contains(ListItem.mpaa,ALL)">flags/mpaa/kr_certificate_all.png</value>
-        <value condition="String.Contains(ListItem.mpaa,12) | String.Contains(ListItem.mpaa,12세)">flags/mpaa/kr_certificate_12.png</value>
-        <value condition="String.Contains(ListItem.mpaa,15) | String.Contains(ListItem.mpaa,15세)">flags/mpaa/kr_certificate_15.png</value>
-        <value condition="String.Contains(ListItem.mpaa,18세) | String.Contains(ListItem.mpaa,청불)  | String.Contains(ListItem.mpaa,19) | String.Contains(ListItem.mpaa,불가) | String.Contains(ListItem.mpaa,18)">flags/mpaa/kr_certificate_18.png</value>
-        <value condition="String.Contains(ListItem.mpaa,제한)">flags/mpaa/kr_certificate_r.png</value>
+        <value condition="String.Contains(ListItem.mpaa,ì „ì²´) | String.Contains(ListItem.mpaa,0) | String.Contains(ListItem.mpaa,ALL)">flags/mpaa/kr_certificate_all.png</value>
+        <value condition="String.Contains(ListItem.mpaa,12) | String.Contains(ListItem.mpaa,12ì„¸)">flags/mpaa/kr_certificate_12.png</value>
+        <value condition="String.Contains(ListItem.mpaa,15) | String.Contains(ListItem.mpaa,15ì„¸)">flags/mpaa/kr_certificate_15.png</value>
+        <value condition="String.Contains(ListItem.mpaa,18ì„¸) | String.Contains(ListItem.mpaa,ì²­ë¶ˆ)  | String.Contains(ListItem.mpaa,19) | String.Contains(ListItem.mpaa,ë¶ˆê°€) | String.Contains(ListItem.mpaa,18)">flags/mpaa/kr_certificate_18.png</value>
+        <value condition="String.Contains(ListItem.mpaa,ì œí•œ)">flags/mpaa/kr_certificate_r.png</value>
         <value>$INFO[ListItem.MPAA,flags/mpaa/,.png]</value>
     </variable>
 
@@ -425,11 +434,11 @@
         <value condition="String.Contains(Container(9500).ListItem.mpaa,US:NC-17) | String.Contains(Container(9500).ListItem.mpaa,USA:NC-17) | String.Contains(Container(9500).ListItem.mpaa,Rated NC-17) | String.IsEqual(Container(9500).ListItem.MPAA,NC-17)">flags/mpaa/nc-17.png</value>
         <value condition="String.Contains(Container(9500).ListItem.mpaa,Rated NR) | String.IsEqual(Container(9500).ListItem.mpaa,Not Rated)">flags/mpaa/nr.png</value>
         <value condition="String.Contains(Container(9500).ListItem.mpaa,US:R) | String.Contains(Container(9500).ListItem.mpaa,USA:R) | String.Contains(Container(9500).ListItem.mpaa,Rated R) | String.Contains(Container(9500).ListItem.mpaa,Rated) | String.IsEqual(ListItem.mpaa,R)">flags/mpaa/r.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,besorolás alatt)">flags/mpaa/hu_ba.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,korhatárra való tekintett nélkül megtekintetheto)">flags/mpaa/hu_kn.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,12 éven aluliak számára a megtekintése nagykorú felügyelete mellett ajánlott)">flags/mpaa/hu_12.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,16 éven aluliak számára nem ajánlott)">flags/mpaa/hu_16.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,18 éven aluliak számára nem ajánlott)">flags/mpaa/hu_18.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,besorolÃ¡s alatt)">flags/mpaa/hu_ba.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,korhatÃ¡rra valÃ³ tekintett nÃ©lkÃ¼l megtekintetheto)">flags/mpaa/hu_kn.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,12 Ã©ven aluliak szÃ¡mÃ¡ra a megtekintÃ©se nagykorÃº felÃ¼gyelete mellett ajÃ¡nlott)">flags/mpaa/hu_12.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,16 Ã©ven aluliak szÃ¡mÃ¡ra nem ajÃ¡nlott)">flags/mpaa/hu_16.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,18 Ã©ven aluliak szÃ¡mÃ¡ra nem ajÃ¡nlott)">flags/mpaa/hu_18.png</value>
         <value condition="String.Contains(Container(9500).ListItem.mpaa,FR:U) | String.Contains(Container(9500).ListItem.mpaa,France:U) | String.Contains(ListItem.mpaa,Tout public) | String.Contains(ListItem.mpaa,Tous public) | String.Contains(Container(9500).ListItem.mpaa,partir de 3 ans) | String.Contains(Container(9500).ListItem.mpaa,partir de 6 ans)">flags/mpaa/csau.png</value>
         <value condition="String.Contains(Container(9500).ListItem.mpaa,FR:10) | String.Contains(Container(9500).ListItem.mpaa,France:10) | String.Contains(Container(9500).ListItem.mpaa,France:-10) | String.Contains(Container(9500).ListItem.mpaa,Interdit aux moins de 10 ans) | String.Contains(Container(9500).ListItem.mpaa,des propos ou des images peuvent heurter)">flags/mpaa/csa10.png</value>
         <value condition="String.Contains(Container(9500).ListItem.mpaa,FR:12) | String.Contains(Container(9500).ListItem.mpaa,France:12) | String.Contains(Container(9500).ListItem.mpaa,France:-12) | String.Contains(Container(9500).ListItem.mpaa,Interdit aux moins de 12 ans)">flags/mpaa/csa12.png</value>
@@ -446,11 +455,11 @@
         <value condition="String.Contains(Container(9500).ListItem.MPAA,Australia:M) | String.Contains(Container(9500).ListItem.MPAA,Australia M)">flags/mpaa/australia_M.png</value>
         <value condition="String.Contains(Container(9500).ListItem.MPAA,Australia:PG) | String.Contains(Container(9500).ListItem.MPAA,Australia PG)">flags/mpaa/australia_PG.png</value>
         <value condition="String.Contains(Container(9500).ListItem.MPAA,Australia:G) | String.Contains(Container(9500).ListItem.MPAA,Australia G)">flags/mpaa/australia_G.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,전체) | String.Contains(Container(9500).ListItem.mpaa,0) | String.Contains(Container(9500).ListItem.mpaa,ALL)">flags/mpaa/kr_certificate_all.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,12) |String.Contains(Container(9500).ListItem.mpaa,12세)">flags/mpaa/kr_certificate_12.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,15) | String.Contains(Container(9500).ListItem.mpaa,15세)">flags/mpaa/kr_certificate_15.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,18세) | String.Contains(Container(9500).ListItem.mpaa,청불)  | String.Contains(Container(9500).ListItem.mpaa,19) | String.Contains(Container(9500).ListItem.mpaa,불가) | String.Contains(Container(9500).ListItem.mpaa,18)">flags/mpaa/kr_certificate_18.png</value>
-        <value condition="String.Contains(Container(9500).ListItem.mpaa,제한)">flags/mpaa/kr_certificate_r.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,ì „ì²´) | String.Contains(Container(9500).ListItem.mpaa,0) | String.Contains(Container(9500).ListItem.mpaa,ALL)">flags/mpaa/kr_certificate_all.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,12) |String.Contains(Container(9500).ListItem.mpaa,12ì„¸)">flags/mpaa/kr_certificate_12.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,15) | String.Contains(Container(9500).ListItem.mpaa,15ì„¸)">flags/mpaa/kr_certificate_15.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,18ì„¸) | String.Contains(Container(9500).ListItem.mpaa,ì²­ë¶ˆ)  | String.Contains(Container(9500).ListItem.mpaa,19) | String.Contains(Container(9500).ListItem.mpaa,ë¶ˆê°€) | String.Contains(Container(9500).ListItem.mpaa,18)">flags/mpaa/kr_certificate_18.png</value>
+        <value condition="String.Contains(Container(9500).ListItem.mpaa,ì œí•œ)">flags/mpaa/kr_certificate_r.png</value>
         <value>$INFO[ListItem.MPAA,flags/mpaa/,.png]</value>
     </variable>
 
@@ -534,7 +543,7 @@
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(301141).ListItem.Art(thumb)) + String.IsEqual(Container(301141).ListItem.DBType,episode) + Skin.HasSetting(background.episodes.use.thumbnail) + Control.IsVisible(301141) + !Control.HasFocus(301141) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)]">$INFO[Container(301141).ListItem.Art(thumb)]</value>
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(301151).ListItem.Art(thumb)) + String.IsEqual(Container(301151).ListItem.DBType,episode) + Skin.HasSetting(background.episodes.use.thumbnail) + Control.IsVisible(301151) + !Control.HasFocus(301151) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)]">$INFO[Container(301151).ListItem.Art(thumb)]</value>
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(3011).ListItem.Property(Background)) + String.IsEmpty(Container(3011).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(3011).ListItem.Art(thumb)) + String.IsEqual(Container(301161).ListItem.DBType,episode) + Skin.HasSetting(background.episodes.use.thumbnail) + Control.IsVisible(3011) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)]">$INFO[Container(3011).ListItem.Art(thumb)]</value>
-        
+
         <!-- Other -->
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(30111).ListItem.Art(fanart)) + Control.IsVisible(30111) + !Control.HasFocus(30111) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)]">$INFO[Container(30111).ListItem.Art(fanart)]</value>
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(30121).ListItem.Art(fanart)) + Control.IsVisible(30121) + !Control.HasFocus(30121) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)]">$INFO[Container(30121).ListItem.Art(fanart)]</value>
@@ -570,7 +579,7 @@
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(301132).ListItem.Art(thumb)) + Integer.IsEqual(Container(301131).NumItems,0) + Control.IsVisible(301132) + !Control.HasFocus(301132) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)] + String.IsEqual(Container(301132).ListItem.DBType,episode) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container(301132).ListItem.Art(thumb)]</value>
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(301142).ListItem.Art(thumb)) + Integer.IsEqual(Container(301141).NumItems,0) + Control.IsVisible(301142) + !Control.HasFocus(301142) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)] + String.IsEqual(Container(301142).ListItem.DBType,episode) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container(301142).ListItem.Art(thumb)]</value>
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(301152).ListItem.Art(thumb)) + Integer.IsEqual(Container(301151).NumItems,0) + Control.IsVisible(301152) + !Control.HasFocus(301152) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)] + String.IsEqual(Container(30112).ListItem.DBType,episode) + Skin.HasSetting(background.episodes.use.thumbnail)">$INFO[Container(301152).ListItem.Art(thumb)]</value>
-        
+
         <!-- Other -->
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(30112).ListItem.Art(fanart)) + Integer.IsEqual(Container(30111).NumItems,0) + Control.IsVisible(30112) + !Control.HasFocus(30112) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)]">$INFO[Container(30112).ListItem.Art(fanart)]</value>
         <value condition="!Skin.HasSetting(home.dontshowfanart) + [[Skin.HasSetting(home.vertical) + Skin.HasSetting(home.vertical.widgets)] | [!Skin.HasSetting(home.vertical) + !Skin.HasSetting(home.classicwidgets) + Skin.HasSetting(home.vertical.widgets)]] + Window.IsVisible(home) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist)) + !String.IsEmpty(Container(30122).ListItem.Art(fanart)) + Integer.IsEqual(Container(30121).NumItems,0) + Control.IsVisible(30122) + !Control.HasFocus(30122) + String.IsEmpty(Container(300).ListItem.Property(background)) + [Control.HasFocus(300) | Control.HasFocus(302) | Control.HasFocus(2011)]">$INFO[Container(30122).ListItem.Art(fanart)]</value>
@@ -623,11 +632,11 @@
         <control type="image" description="Background">
             <include>Dimensions_Fullscreen</include>
             <texture colordiffuse="ff000000">common/white.png</texture>
-            <visible>Player.HasVideo + Skin.HasSetting(global.showvideo)</visible>
+            <visible>Player.HasVideo + Skin.HasSetting(global.showvideo) + String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
         </control>
         <control type="videowindow">
             <include>Dimensions_Fullscreen</include>
-            <visible>Player.HasVideo + Skin.HasSetting(global.showvideo)</visible>
+            <visible>Player.HasVideo + Skin.HasSetting(global.showvideo) + String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
         </control>
     </include>
 
@@ -745,7 +754,7 @@
     <include name="ImagePathBlurLitebox">
         <imagepath background="true">$INFO[Window(home).Property(ImageFilterFIVE)]</imagepath>
     </include>
-    
+
     <include name="ImagePathBlurEmbuary">
         <imagepath background="true">$INFO[Window(home).Property(listitem_blurred)]</imagepath>
     </include>
@@ -781,12 +790,20 @@
         </control>
     </include>
 
+
+    <include name="AKLTrailerWindow">
+        <control type="videowindow">
+            <include>Dimensions_Fullscreen</include>
+            <visible>Skin.HasSetting(akl.autoplay.trailer) + $EXP[AKLGameBrowse] + Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
+        </control>
+    </include>
+
     <include name="TrailerWindow">
         <control type="videowindow">
             <visible>$EXP[TrailerWindowIsActive] + !$EXP[ExtendedNowPlayingIsVisible]</visible>
             <include condition="![$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)]">DefTrailerVideoWindowSmall</include>
             <include condition="$EXP[HomeIsCleanMinimal] + Window.IsVisible(Home)">DefTrailerVideoWindowFullscreen</include>
-        </control>        
+        </control>
         <control type="image" description="Background">
             <animation effect="slide" start="0,0" end="0,-90" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window.force)">Conditional</animation>
             <animation effect="slide" start="0,0" end="0,-50" time="0" condition="Skin.HasSetting(home.netflix.autoplay.trailer.custom.window) + String.IsEqual(VideoPlayer.VideoAspect,1.85) + !String.IsEmpty(VideoPlayer.VideoAspect)">Conditional</animation>
@@ -797,7 +814,7 @@
             <texture colordiffuse="Background">common/trailerwindow.png</texture>
         </control>
     </include>
-    
+
     <include name="BlurImageEmbuary">
         <control type="image" id="100000">
             <left>-3000</left>
@@ -808,7 +825,7 @@
             <visible>!Window.IsVisible(Custom_Blur.xml)</visible>
         </control>
     </include>
-    
+
     <include name="BlurImageLitebox">
         <control type="multiimage" id="7975">
             <left>-2160</left>
@@ -822,9 +839,9 @@
         </control>
     </include>
 
-    <include name="GlobalBackground">        
+    <include name="GlobalBackground">
         <include condition="Skin.HasSetting(EnableEffects) + !Skin.HasSetting(BlurEnabled)">BlurImageLitebox</include>
-        <include condition="Skin.HasSetting(EnableEffects) + Skin.HasSetting(BlurEnabled)">BlurImageEmbuary</include>        
+        <include condition="Skin.HasSetting(EnableEffects) + Skin.HasSetting(BlurEnabled)">BlurImageEmbuary</include>
         <include condition="!Skin.HasSetting(global.showvideo) + Skin.HasSetting(background.video.fix.audio.errors)">HiddenVideoWindow</include>
         <include>GlobalVideoWindow</include>
         <include condition="Skin.HasSetting(global.showvisualisation) + !String.IsEmpty(Visualisation.Name)">GlobalVisualisation</include>
@@ -900,12 +917,12 @@
             <label>$INFO[ListItem.Art(tvshow.fanart20)]</label>
             <pauseatend>HomeTimePerImage</pauseatend>
         </control>
-        
+
         <!-- Visualisation Overlay -->
         <control type="image" description="Background">
             <include>Dimensions_Fullscreen</include>
             <texture colordiffuse="Background">common/bg.jpg</texture>
-            <visible>!$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern] + [[Player.HasVideo + Skin.HasSetting(global.showvideo)] | [Player.HasAudio + Skin.HasSetting(global.showvisualisation) + !String.IsEmpty(Visualisation.Name)]]</visible>
+            <visible>!$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern] + [[[Player.HasVideo + Skin.HasSetting(global.showvideo)] + String.IsEmpty(Window(home).Property(AKLTrailerPath))] | [Player.HasAudio + Skin.HasSetting(global.showvisualisation) + !String.IsEmpty(Visualisation.Name)]]</visible>
             <animation effect="fade" start="100" end="75" time="0" condition="true">Conditional</animation>
         </control>
 
@@ -916,7 +933,7 @@
         <control type="multiimage" description="Fanart">
             <visible>!Skin.HasSetting(EnableEffects)</visible>
             <include condition="![ [$EXP[HomeIsSpotlight] | $EXP[HomeIsClassic] | $EXP[HomeIsModern]] + Window.IsVisible(home)]">GlobalBackgroundFade</include>
-            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
             <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
             <include>Dimensions_Fullscreen</include>
             <include>Animation.Background.OpenClose</include>
@@ -933,7 +950,7 @@
         <control type="multiimage" description="Fanart">
             <visible>Skin.HasSetting(EnableEffects) + !Window.IsVisible(home)</visible>
             <include>GlobalBackgroundFadeBlur</include>
-            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio] | [Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))]</visible>
             <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
             <include>Dimensions_Fullscreen</include>
             <include>Animation.Background.OpenClose</include>
@@ -952,7 +969,7 @@
             <visible>Skin.HasSetting(EnableEffects) + Window.IsVisible(home)</visible>
             <include condition="!Skin.HasSetting(BlurOnHome) + !$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern]">GlobalBackgroundFade</include>
             <include condition="Skin.HasSetting(BlurOnHome)">GlobalBackgroundFadeBlur2</include>
-            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio] | [Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))]</visible>
             <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
             <include>Dimensions_Fullscreen</include>
             <include>Animation.Background.OpenClose</include>
@@ -970,7 +987,7 @@
         <!-- Fallback -->
         <control type="image" description="Fanart Fallback always">
             <include>GlobalBackgroundFade</include>
-            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio] | [Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))]</visible>
             <include>Dimensions_Fullscreen</include>
             <visible>!Window.IsVisible(home) + Skin.HasSetting(global.hidefanart) + !String.IsEmpty(Skin.String(fanart.fallback))</visible>
             <include>Animation.Background.OpenClose</include>
@@ -983,7 +1000,7 @@
         <!-- Netflix Preview Window -->
         <control type="multiimage" description="Fanart">
             <visible>[[Window.IsVisible(Home.xml) + Skin.HasSetting(homemenu.netflix) + !Skin.HasSetting(hide.homemenu.netflix.preview) + [$EXP[HomeIsModernMultiWidgets] | $EXP[HomeIsVerticalMultiWidgets]]] | [[[Control.IsVisible(510) | Control.IsVisible(520) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(524)] + !Skin.HasSetting(hide.views.netflix.preview)]]] + !Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(DialogMusicInfo.xml) + !Window.IsVisible(DialogAddonInfo.xml) + !Window.IsVisible(DialogPVRInfo.xml) + !Window.IsVisible(skin.arctic.zephyr.mod.script-gto-info.xml) + ![Skin.HasSetting(homemenu.clean.flix) + Window.IsVisible(Home.xml)]</visible>
-            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio]</visible>
+            <visible>!Player.HasMedia | [!Skin.HasSetting(global.showvideo) + Player.HasVideo] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Skin.HasSetting(global.showvisualisation) + String.IsEmpty(Visualisation.Name) + Player.HasAudio] | [Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))]</visible>
             <visible>!Skin.HasSetting(global.hidefanart) | Window.IsVisible(home)</visible>
             <include>Animation.Background.OpenClose</include>
             <animation effect="fade" start="0" end="100" time="350" tween="sine" easing="in" reversible="false">Visible</animation>
@@ -1004,7 +1021,7 @@
             <include>Animation.Animate.Fanart</include>
             <include>Animation.AutoTrailer.FadeOut.Background</include>
         </control>
-        
+
         <!-- Final Overlays -->
         <control type="image" description="FanartOverlay">
             <visible>[!Skin.HasSetting(homemenu.clean.flix) + !$EXP[HomeIsSpotlight] + !$EXP[HomeIsClassic] + !$EXP[HomeIsModern]] | !Window.IsVisible(Home.xml)</visible>
@@ -1452,7 +1469,7 @@
             </control>
         </control>
     </include>
-    
+
     <include name="weatherlistinputpageone">
         <param name="title" value="$PARAM[title]" default="$LOCALIZE[33006]"/>
         <definition>
@@ -1536,7 +1553,7 @@
                 <align>center</align>
                 <font>LargeBold</font>
                 <textcolor>PanelWhite100</textcolor>
-                <label fallback="10006">$INFO[Window(Weather).Property(Day$PARAM[day].HighTemp),[B],[/B]°]$INFO[Window(Weather).Property(Day$PARAM[day].LowTemp),  ,°]</label>
+                <label fallback="10006">$INFO[Window(Weather).Property(Day$PARAM[day].HighTemp),[B],[/B]Â°]$INFO[Window(Weather).Property(Day$PARAM[day].LowTemp),  ,Â°]</label>
             </control>
             <control type="textbox">
                 <top>76%</top>
@@ -1640,7 +1657,7 @@
                     <param name="icon" value="buttonsdialogs/info.png"/>
                 </include>
             </control>
-            
+
             <!-- Rating Button -->
             <control type="radiobutton" id="9007">
                 <visible>!String.IsEqual(ListItem.DBType,artist)</visible>
@@ -1662,7 +1679,7 @@
                 <font>Null</font>
                 <visible>!Skin.HasSetting(hidebutton.music.rating)</visible>
             </control>
-            
+
             <!-- Wikipedia Button -->
             <control type="radiobutton" id="9030">
                 <onfocus>ClearProperty(musiccontent)</onfocus>
@@ -1852,7 +1869,7 @@
                     <param name="icon" value="buttonsdialogs/info.png"/>
                 </include>
             </control>
-            
+
             <!-- Trailer - ListItem.Trailer | IMDB.Trailer | Bingie.Helper -->
             <control type="radiobutton" id="1224">
                 <onfocus>ClearProperty(moviecontent)</onfocus>
@@ -1861,11 +1878,11 @@
                 <include content="buttontextures">
                     <param name="icon" value="buttonsdialogs/trailer.png"/>
                 </include>
-                <visible>!Skin.HasSetting(PlayTrailerWindowed) + [[Skin.HasSetting(Use.IMDB.Trailer) + System.AddonIsEnabled(plugin.video.imdb.trailers) + !String.IsEmpty(ListItem.IMDBNumber)] | [!Skin.HasSetting(Use.IMDB.Trailer) + String.IsEmpty(ListItem.Trailer) + System.AddonIsEnabled(script.bingie.helper)] | [!Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)]]</visible>                
-                <onclick condition="Skin.HasSetting(Use.IMDB.Trailer) | String.IsEmpty(ListItem.Trailer)">Dialog.Close(2003)</onclick>                
+                <visible>!Skin.HasSetting(PlayTrailerWindowed) + [[Skin.HasSetting(Use.IMDB.Trailer) + System.AddonIsEnabled(plugin.video.imdb.trailers) + !String.IsEmpty(ListItem.IMDBNumber)] | [!Skin.HasSetting(Use.IMDB.Trailer) + String.IsEmpty(ListItem.Trailer) + System.AddonIsEnabled(script.bingie.helper)] | [!Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)]]</visible>
+                <onclick condition="Skin.HasSetting(Use.IMDB.Trailer) | String.IsEmpty(ListItem.Trailer)">Dialog.Close(2003)</onclick>
                 <onclick condition="!Skin.HasSetting(Use.IMDB.Trailer) + !String.IsEmpty(ListItem.Trailer)">SendClick(11)</onclick>
                 <onclick condition="!Skin.HasSetting(Use.IMDB.Trailer) + String.IsEmpty(ListItem.Trailer) + System.AddonIsEnabled(script.bingie.helper)">RunScript(script.bingie.helper,action=playtrailer,MODE=fullscreen,title=$INFO[ListItem.Title],local=true)</onclick>
-                <onclick condition="Skin.HasSetting(Use.IMDB.Trailer)">PlayMedia(plugin://plugin.video.imdb.trailers/?action=play_id&amp;imdb=$INFO[ListItem.IMDBNumber])</onclick>                
+                <onclick condition="Skin.HasSetting(Use.IMDB.Trailer)">PlayMedia(plugin://plugin.video.imdb.trailers/?action=play_id&amp;imdb=$INFO[ListItem.IMDBNumber])</onclick>
                 <visible>!Skin.HasSetting(hidebutton.video.trailer)</visible>
             </control>
 
@@ -3048,7 +3065,7 @@
             <info>Player.Chapters</info>
         </control>
     </include>
-    
+
     <include name="ProgressBarInfo">
         <control type="ranges">
             <visible>Skin.HasSetting(cutlist.markers)</visible>
@@ -3121,13 +3138,13 @@
     </variable>
 
     <variable name="Weather_LowTemp">
-        <value condition="!String.IsEmpty(Window(Weather).Property(Current.LowTemp))">$INFO[Window(Weather).Property(Current.LowTemp),,°]</value>
-        <value condition="!String.IsEmpty(Window(Weather).Property(Day0.LowTemp))">$INFO[Window(Weather).Property(Day0.LowTemp),,°]</value>
+        <value condition="!String.IsEmpty(Window(Weather).Property(Current.LowTemp))">$INFO[Window(Weather).Property(Current.LowTemp),,Â°]</value>
+        <value condition="!String.IsEmpty(Window(Weather).Property(Day0.LowTemp))">$INFO[Window(Weather).Property(Day0.LowTemp),,Â°]</value>
     </variable>
 
     <variable name="Weather_HighTemp">
-        <value condition="!String.IsEmpty(Window(Weather).Property(Current.HighTemp))">$INFO[Window(Weather).Property(Current.HighTemp),,°]</value>
-        <value condition="!String.IsEmpty(Window(Weather).Property(Day0.HighTemp))">$INFO[Window(Weather).Property(Day0.HighTemp),,°]</value>
+        <value condition="!String.IsEmpty(Window(Weather).Property(Current.HighTemp))">$INFO[Window(Weather).Property(Current.HighTemp),,Â°]</value>
+        <value condition="!String.IsEmpty(Window(Weather).Property(Day0.HighTemp))">$INFO[Window(Weather).Property(Day0.HighTemp),,Â°]</value>
     </variable>
 
     <variable name="Weather_UVIndex_Label">
@@ -3296,7 +3313,7 @@
                     <height>40</height>
                     <font>Tiny</font>
                     <textcolor>$VAR[OSDPanelWhite70Music]</textcolor>
-                    <label>$INFO[MusicPlayer.BitRate, •  ,kbps]</label>
+                    <label>$INFO[MusicPlayer.BitRate, â€¢  ,kbps]</label>
                     <visible>!String.IsEmpty(MusicPlayer.BitRate)</visible>
                 </control>
                 <control type="label">
@@ -3305,7 +3322,7 @@
                     <height>40</height>
                     <font>Tiny</font>
                     <textcolor>$VAR[OSDPanelWhite70Music]</textcolor>
-                    <label>$INFO[MusicPlayer.Samplerate, •  ,kHz]</label>
+                    <label>$INFO[MusicPlayer.Samplerate, â€¢  ,kHz]</label>
                     <visible>!String.IsEmpty(MusicPlayer.Samplerate)</visible>
                 </control>
                 <control type="label">
@@ -3314,7 +3331,7 @@
                     <height>40</height>
                     <font>Tiny</font>
                     <textcolor>$VAR[OSDPanelWhite70Music]</textcolor>
-                    <label>$INFO[MusicPlayer.BPM, •  ,bpm]</label>
+                    <label>$INFO[MusicPlayer.BPM, â€¢  ,bpm]</label>
                     <visible>!String.IsEmpty(MusicPlayer.BPM)</visible>
                 </control>
                 <control type="label">
@@ -3323,7 +3340,7 @@
                     <height>40</height>
                     <font>Tiny</font>
                     <textcolor>$VAR[OSDPanelWhite70Music]</textcolor>
-                    <label>$INFO[MusicPlayer.BitsPerSample, •  ,bit]</label>
+                    <label>$INFO[MusicPlayer.BitsPerSample, â€¢  ,bit]</label>
                     <visible>!String.IsEmpty(MusicPlayer.BitsPerSample)</visible>
                 </control>
             </control>
@@ -3454,7 +3471,7 @@
     <variable name="AlbumPath">
         <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,album)">$INFO[ListItem.FolderPath]</value>
     </variable>
-    
+
     <variable name="ActorPath">
         <value condition="ListItem.IsFolder + String.IsEqual(Container(301).ListItem.DBType,actor)">$INFO[Container(301).ListItem.FolderPath]</value>
         <value condition="ListItem.IsFolder + String.IsEqual(ListItem.DBType,actor)">$INFO[ListItem.FolderPath]</value>
@@ -3506,7 +3523,7 @@
             <orientation>horizontal</orientation>
             <control type="label">
                 <include>MultiWidgetsSubLabelDefinition</include>
-                <label>  •  </label>
+                <label>  â€¢  </label>
                 <visible>Container($PARAM[id]).ListItem.IsPlaying | Container($PARAM[id]).ListItem.IsResumable |
                 [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)] |
                 [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) + [
@@ -3552,7 +3569,7 @@
                 <label>[COLOR=FF00DD44]&#10003;[/COLOR]</label>
                 <visible>!Container($PARAM[id]).ListItem.IsPlaying + String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)</visible>
             </control>
-            
+
             <!-- Is Playing -->
             <control type="label">
                 <include>Def_Watched_Indicators_Clean</include>
@@ -3600,7 +3617,7 @@
             <orientation>horizontal</orientation>
             <control type="label">
                 <include>MultiWidgetsSubLabelDefinition</include>
-                <label>  •  </label>
+                <label>  â€¢  </label>
                 <visible>Container($PARAM[id]).ListItem.IsResumable |
                 [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayWatched.png) + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.watched)] |
                 [String.IsEqual(Container($PARAM[id]).ListItem.Overlay,OverlayUnwatched.png) + !Container($PARAM[id]).ListItem.IsResumable + !Skin.HasSetting(hide.markers.newcontent) +
@@ -4367,6 +4384,15 @@
         </focusedlayout>
     </include>
 
+    <!-- V43 AKL artwork geometry helpers. Kodi does not expose the final rectangle of a keep-scaled texture,
+         so the skin uses consistent geometry families for cartridge and 3D-box modes. -->
+    <expression name="AKLCartridgeMode">$EXP[AKLGameBrowse] + String.IsEqual(ListItem.Property(akl_art_mode),cartridge) + !String.IsEmpty(ListItem.Art(cartridge))</expression>
+    <expression name="AKL3DBoxMode">$EXP[AKLGameBrowse] + String.IsEqual(ListItem.Property(akl_art_mode),3dbox) + !String.IsEmpty(ListItem.Art(3dbox))</expression>
+    <expression name="AKLBoxMode">$EXP[AKLGameBrowse] + !$EXP[AKLCartridgeMode] + !$EXP[AKL3DBoxMode]</expression>
+    <!-- V47: identifies actual AKL game artwork even outside the AKL window (for example Home widgets).
+         Movies/TV cannot satisfy the AKL path/AEL-ROM side of this expression. -->
+    <expression name="AKLGameArtItem">[String.Contains(Container.FolderPath,plugin://plugin.program.akl) | String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.Contains(ListItem.Path,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom) | $EXP[AKLGameBrowse]] + [!String.IsEmpty(ListItem.Art(boxfront)) | !String.IsEmpty(ListItem.Art(3dbox)) | !String.IsEmpty(ListItem.Art(cartridge))]</expression>
+
     <include name="include.widget.poster">
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <param name="height" value="$PARAM[height]" default="325"/>
@@ -4504,12 +4530,14 @@
 
     <include name="include.widget.landscape">
         <param name="height" value="$PARAM[height]" default="325"/>
+        <param name="image" value="$PARAM[image]" default="$VAR[AKLGameImage]"/>
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
             <include content="def_widgetlandscape">
+                <param name="image" value="$PARAM[image]"/>
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 <param name="clearlogo" value="$PARAM[clearlogo]" />
             </include>
@@ -4592,6 +4620,7 @@
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="visible_title_overlay" value="$PARAM[visible_title_overlay]" default="false"/>
+        <param name="zoom" value="$PARAM[zoom]" default="120"/>
         <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)"/>
         <definition>
         <control type="group">
@@ -4611,12 +4640,15 @@
             <include condition="$PARAM[zoom_condition]" content="Animation.Focus.Zoom">
                 <param name="zoom" value="$PARAM[zoom]"/>
             </include>
+            <include condition="$EXP[AKLGameArtItem] + !$PARAM[zoom_condition]" content="Animation.Focus.Zoom">
+                <param name="zoom" value="108"/>
+            </include>
             <height>$PARAM[height]</height>
             <include content="def_widgetposter">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 <param name="visible_title_overlay" value="$PARAM[visible_title_overlay]" />
             </include>
-            <include content="def_widgetfocus">
+            <include content="def_widgetfocus" condition="!$EXP[AKLGameArtItem]">
                 <param name="id" value="$PARAM[id]"/>
                 <param name="glow_height" value="$PARAM[glow_height]" />
                 <param name="glow_top" value="$PARAM[glow_top]"/>
@@ -4752,7 +4784,7 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="103" /></include>
+            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetfanart">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
@@ -4772,8 +4804,10 @@
 
     <include name="include.widget.landscape.focus">
         <param name="height" value="$PARAM[height]" default="325"/>
+        <param name="image" value="$PARAM[image]" default="$VAR[AKLGameImage]"/>
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
+        <param name="zoom" value="$PARAM[zoom]" default="108"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
@@ -4789,9 +4823,10 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="103" /></include>
+            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="$PARAM[zoom]" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetlandscape">
+                <param name="image" value="$PARAM[image]"/>
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
                 <param name="clearlogo" value="$PARAM[clearlogo]" />
             </include>
@@ -4812,7 +4847,7 @@
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <definition>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="103" /></include>
+            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetbanner">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
@@ -4862,7 +4897,7 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="103" /></include>
+            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetthumb">
                 <param name="clearlogo" value="$PARAM[clearlogo]"/>
@@ -4919,7 +4954,7 @@
         <value condition="Skin.HasSetting(home.netflix.autoplay.trailer)">special://skin/extras/playlists/Spotlight.xsp</value>
         <value>special://skin/extras/playlists/RandomMovies.xsp</value>
     </variable>
-    
+
     <include name="BusySpinner">
         <param name="color" default="Dark1"/>
         <definition>
@@ -4954,9 +4989,9 @@
         </control>
         </definition>
     </include>
-    
+
     <include name="MousePointer">
-    
+
         <!-- Pointer -->
         <control type="image" id="1">
             <width>40</width>
@@ -4989,9 +5024,9 @@
             <visible>Skin.HasSetting(hide.mouse.warning)</visible>
         </control>
     </include>
-    
+
     <include name="MouseWarning">
-    
+
         <!-- Pointer -->
         <control type="image" id="1">
             <width>200</width>
@@ -5024,12 +5059,12 @@
             <visible>!Skin.HasSetting(hide.mouse.warning)</visible>
         </control>
     </include>
-    
+
     <include name="arrowdimensions">
         <width>16</width>
         <height>16</height>
     </include>
-    
+
     <include name="EffectsPreviewImage">
         <control type="image">
             <texture background="true">$PARAM[texture]</texture>
@@ -5049,7 +5084,7 @@
             <animation effect="fade" end="60" start="100" time="0" condition="Integer.IsEqual(Skin.String(BackgroundBrightnessBlur),60)">Conditional</animation>
         </control>
     </include>
-    
+
     <include name="border_texture">
         <param name="colordiffuse" default="BoxWidget"/>
         <definition>
@@ -5057,16 +5092,16 @@
         <bordertexture border="4" colordiffuse="$PARAM[colordiffuse]" infill="false">common/box21.png</bordertexture>
         </definition>
     </include>
-    
+
     <variable name="UpNextEpisodePath">
         <value condition="String.IsEqual(ListItem.DBType,tvshow) + Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.DBID)">videodb://inprogresstvshows/$INFO[ListItem.DBID]/-2/?tvshowid=$INFO[ListItem.DBID]</value>
     </variable>
-    
+
     <variable name="TMDbHelper_InfoList_Content">
         <value condition="String.IsEqual(Window(home).Property(extendedtype),tv)">plugin://plugin.video.themoviedb.helper/?info=details&amp;type=tv&amp;query=$INFO[Container(10051).ListItem.Label]</value>
         <value>plugin://plugin.video.themoviedb.helper/?info=details&amp;type=movie&amp;query=$INFO[Container(10051).ListItem.Label]</value>
     </variable>
-    
+
     <include name="PosterDiscCase">
         <param name="discposition" default="5"/>
         <definition>
@@ -5098,12 +5133,24 @@
                     <effect type="fade" start="100" end="0" time="150"/>
                 </animation>
             </control>
+            <!-- Library/movie poster: preserve original skin behavior -->
             <control type="image">
                 <width>242</width>
                 <height>342</height>
                 <fadetime>PosterFanartFadetime</fadetime>
                 <texture background="true">$VAR[PosterImage]</texture>
+                <visible>!$EXP[AKLGameBrowse]</visible>
             </control>
+            <!-- AKL box / 3D box / cartridge: preserve source aspect ratio -->
+            <control type="image">
+                <width>242</width>
+                <height>342</height>
+                <fadetime>PosterFanartFadetime</fadetime>
+                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                <texture background="true">$VAR[PosterImage]</texture>
+                <visible>$EXP[AKLGameBrowse]</visible>
+            </control>
+            <!-- Original skin poster overlays: keep them active for library content and all AKL artwork modes. -->
             <control type="image">
                 <width>278</width>
                 <height>370</height>
@@ -5111,23 +5158,24 @@
                 <top>-9</top>
                 <fadetime>PosterFanartFadetime</fadetime>
                 <texture>misc/poster_glass2.png</texture>
-                <visible>Skin.HasSetting(ModernCase)</visible>
+                <visible>Skin.HasSetting(ModernCase) + !$EXP[AKLGameArtItem]</visible>
             </control>
             <control type="image">
                 <width>244</width>
                 <height>345</height>
                 <fadetime>PosterFanartFadetime</fadetime>
                 <texture>misc/br-case.png</texture>
-                <visible>!Skin.HasSetting(ModernCase)</visible>
+                <visible>!Skin.HasSetting(ModernCase) + !$EXP[AKLGameArtItem]</visible>
             </control>
+
         </control>
         </definition>
     </include>
-    
+
     <variable name="AutoCompletionPath">
         <value condition="System.AddonIsEnabled(plugin.program.autocompletion)">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
     </variable>
-    
+
     <variable name="Wiki_Label">
         <value condition="String.IsEqual(ListItem.DBType,album) + !String.IsEmpty(ListItem.Album)">$INFO[ListItem.Album] $INFO[ListItem.Artist]</value>
         <value condition="String.IsEqual(ListItem.DBType,song) + !String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title] $INFO[ListItem.Artist]</value>
@@ -5143,7 +5191,7 @@
         <value condition="Player.HasVideo + VideoPlayer.Content(episodes)">videodb://tvshows/titles/-1/-1/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Player.Title]%22%5D%7D%2C%7B%22field%22%3A%22filename%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22$INFO[Player.Filename]%22%5D%7D%5D%7D%2C%22type%22%3A%22episodes%22%7D
         </value>
     </variable>
-    
+
     <include name="OnDirectionAction">
         <onleft>$PARAM[ondirection]</onleft>
         <onright>$PARAM[ondirection]</onright>
@@ -5151,7 +5199,7 @@
         <ondown>$PARAM[ondirection]</ondown>
         <onback>$PARAM[ondirection]</onback>
     </include>
-    
+
     <variable name="LanguageCheck">
         <value condition="String.IsEqual(System.Language,Italian)">it</value>
         <value condition="String.IsEqual(System.Language,German)">de</value>

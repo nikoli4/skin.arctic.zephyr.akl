@@ -43,6 +43,7 @@
         <focusedlayout width="300">
             <control type="group">
                 <posy>120</posy>
+                <animation effect="zoom" start="100" end="120" time="200" tween="sine" easing="inout" center="auto" condition="Skin.HasSetting(items.focus.zoom)">Conditional</animation>
                 <animation condition="Container(53).OnNext | Container(53).OnPrevious" effect="zoom" start="60" end="100" delay="0" time="350" tween="sine" easing="out" center="213,276">Focus</animation>
                 <animation condition="Container(53).OnNext | Container(53).OnPrevious" effect="zoom" start="100" end="60" delay="0" time="250" tween="sine" easing="out" center="213,282">UnFocus</animation>
                 <control type="image">
@@ -73,18 +74,29 @@
                     <width>PosterW</width>
                     <height>640</height>
                     <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
+                    <visible>!$EXP[InGameMode]</visible>
                 </control>
+                <!-- Game/AKL poster: preserve existing custom sizing -->
+                <control type="image">
+                    <width>PosterW</width>
+                    <height>PosterH</height>
+                    <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                    <texture background="true">$VAR[PosterImage]</texture>
+                    <visible>$EXP[InGameMode]</visible>
+                </control>
+                <!-- Movie/library poster: use the skin's original fitted poster treatment -->
                 <control type="image">
                     <width>PosterW</width>
                     <height>PosterH</height>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                     <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImage]</texture>
+                    <visible>!$EXP[InGameMode]</visible>
                 </control>
                 <control type="image">
                     <width>PosterW</width>
                     <height>PosterH</height>
                     <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-                    <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                    <visible>!Skin.HasSetting(thumbnails.white) + !$EXP[InGameMode]</visible>
                 </control>
                 <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">
                     <param name="right" value="-138" />

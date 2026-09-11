@@ -4054,6 +4054,7 @@
         <definition>
         <control type="image">
             <texture border="11" background="true" infill="false">common/$VAR[nofocus-shadow10]</texture>
+            <visible>!$EXP[AKLGameArtItem]</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -4061,6 +4062,17 @@
             <right>10</right>
             <bottom>10</bottom>
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
+            <visible>!$EXP[AKLGameArtItem]</visible>
+        </control>
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <bottom>10</bottom>
+            <aspectratio scalediffuse="false">keep</aspectratio>
+            <texture background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
+            <include condition="!Skin.HasSetting(thumbnails.white)">border_texture</include>
+            <visible>[String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom)] + !String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBTYPE,studio)</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -4070,7 +4082,7 @@
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetposter_new.png" background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
             <include condition="!Skin.HasSetting(thumbnails.white)">border_texture</include>
-            <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBTYPE,studio)</visible>
+            <visible>![String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom)] + !String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBTYPE,studio)</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -4403,6 +4415,7 @@
     </include>
 
     <include name="def_widgetlandscape">
+        <param name="image" value="$PARAM[image]" default="$VAR[AKLGameImage]"/>
         <param name="indicatorbackground" value="$PARAM[indicatorbackground]" default="false"/>
         <param name="clearlogo" value="$PARAM[clearlogo]" default="false"/>
         <definition>
@@ -4415,6 +4428,16 @@
             <right>10</right>
             <bottom>10</bottom>
             <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
+            <visible>![String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom)]</visible>
+        </control>
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>10</right>
+            <bottom>10</bottom>
+            <aspectratio scalediffuse="false">keep</aspectratio>
+            <texture fallback="DefaultMovies.png">$PARAM[image]</texture>
+            <visible>[String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom)] + !String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBTYPE,studio)</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -4423,7 +4446,7 @@
             <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetfanart_new.png" background="true" fallback="DefaultMovies.png">$VAR[FanartImage]</texture>
-            <visible>!String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBTYPE,studio)</visible>
+            <visible>![String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom)] + !String.IsEqual(ListItem.DBType,genre) + !String.EndsWith(Container.FolderPath,Genres) + !String.IsEqual(ListItem.DBTYPE,studio)</visible>
         </control>
         <control type="image">
             <left>10</left>
@@ -4540,9 +4563,21 @@
                 <param name="bottom" value="101" />
             </include>
             <bottom>10</bottom>
+            <aspectratio scalediffuse="false">keep</aspectratio>
+            <texture diffuse="diffuse/widgetposter_left.png" background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
+            <visible>$PARAM[poster] + [String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom)]</visible>
+        </control>
+        <control type="image">
+            <left>10</left>
+            <top>10</top>
+            <right>390</right>
+            <include content="def_bottom" condition="$PARAM[small]">
+                <param name="bottom" value="101" />
+            </include>
+            <bottom>10</bottom>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <texture diffuse="diffuse/widgetposter_left.png" background="true" fallback="DefaultMovies.png">$VAR[PosterImage]</texture>
-            <visible>$PARAM[poster]</visible>
+            <visible>$PARAM[poster] + ![String.Contains(ListItem.FolderPath,plugin://plugin.program.akl) | String.IsEqual(ListItem.Property(AEL_Content),rom)]</visible>
         </control>
         <control type="image">
             <left>10</left>

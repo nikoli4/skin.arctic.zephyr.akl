@@ -15,6 +15,17 @@
                 <textcolor>Dark1</textcolor>
                 <font>SmallBold</font>
                 <label fallback="19055">$INFO[ListItem.Title]</label>
+                <visible>!$EXP[AKLGameBrowse] | !Skin.HasSetting(akl.519.clearlogo.title) | String.IsEmpty(ListItem.Art(clearlogo))</visible>
+            </control>
+            <!-- AKL Shifted ClearArt: optionally use clearlogo in the title position -->
+            <control type="image" description="AKL clearlogo title replacement">
+                <top>500</top>
+                <left>SidePad</left>
+                <width>500</width>
+                <height>80</height>
+                <aspectratio scalediffuse="true" align="left" aligny="center">keep</aspectratio>
+                <texture background="true">$VAR[ClearLogoTopVar]</texture>
+                <visible>$EXP[AKLGameBrowse] + Skin.HasSetting(akl.519.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
             </control>
             <control type="panel" id="519">
                 <visible>Container.Content(movies) | Container.Content(musicvideos) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets) | Container.Content(videos) | $EXP[InGameMode]</visible>
@@ -60,7 +71,7 @@
             <control type="grouplist">
                 <left>SidePad</left>
                 <top>600</top>
-                <width>1270</width>
+                <width>1120</width>
                 <orientation>vertical</orientation>
                 <top>683</top>
                 <itemgap>3</itemgap>
@@ -84,6 +95,16 @@
                 <width>400</width>
                 <aspectratio scalediffuse="true" align="right" aligny="top">keep</aspectratio>
                 <texture background="true">$INFO[ListItem.Art(clearart)]</texture>
+                <visible>!String.IsEmpty(ListItem.Art(clearart)) + [!Skin.HasSetting(akl.autoplay.trailer) | !Player.HasVideo | String.IsEmpty(Window(home).Property(AKLTrailerPath))]</visible>
+            </control>
+            <!-- AKL gameplay trailer: occupies lower-right ClearArt area -->
+            <control type="videowindow">
+                <top>540</top>
+                <right>55</right>
+                <width>640</width>
+                <height>360</height>
+                <aspectratio align="center" aligny="center">scale</aspectratio>
+                <visible>Skin.HasSetting(akl.autoplay.trailer) + $EXP[AKLGameBrowse] + Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
             </control>
             <control type="image" description="Shadow">
                 <width>400</width>
@@ -91,7 +112,7 @@
                 <height>1</height>
                 <bottom>220</bottom>
                 <texture flipy="true" colordiffuse="BoxHomerow">common/sch2.png</texture>
-                <visible>!String.IsEmpty(ListItem.Art(clearart))</visible>
+                <visible>!String.IsEmpty(ListItem.Art(clearart)) + [!Skin.HasSetting(akl.autoplay.trailer) | !Player.HasVideo | String.IsEmpty(Window(home).Property(AKLTrailerPath))]</visible>
             </control>
         </control>
     </include>

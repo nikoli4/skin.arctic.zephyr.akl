@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window type="dialog" id="1193">
-    <visible>Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[TrailerIsPlaying] + !Skin.HasSetting(trailer.dont.stop.on.unfocus) + [Container.Content(episodes) | Container.Content(seasons) | Container.Content(sets)]</visible>
+    <visible>Skin.HasSetting(akl.autoplay.trailer) + Player.HasMedia + $EXP[AKLGameBrowse] + !String.IsEmpty(Window(home).Property(AKLTrailerPath)) + [String.IsEmpty(ListItem.Trailer) | !String.IsEqual(Window(home).Property(AKLTrailerPath),ListItem.Trailer)]</visible>
     <onload>ClearProperty(TrailerPath,home)</onload>
+    <onload>ClearProperty(AKLTrailerPath,home)</onload>
     <onload>Stop</onload>
     <controls />
 </window>

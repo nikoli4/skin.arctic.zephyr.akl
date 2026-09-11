@@ -6,6 +6,10 @@
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
+        <!-- V53: AKL Recently Played is already ordered by last_launch_timestamp DESC.
+             Force Kodi/Skin Shortcuts to preserve provider order for this widget,
+             regardless of a stale saved widgetSortby property in userdata. -->
+        <property name="sortby" tag="property" attribute="name|widgetPath" value="plugin://plugin.program.akl/collection/virtual/recently_played?reload=$INFO[Window(Home).Property(widgetreload)]$INFO[Window(Home).Property(widgetreload2)]">none</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sort" tag="property" attribute="name|widgetSort"/>
         <property name="aspectratio" tag="property" attribute="name|widgetAspectRatio"/>
@@ -141,6 +145,10 @@
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
+        <!-- V53: AKL Recently Played is already ordered by last_launch_timestamp DESC.
+             Force Kodi/Skin Shortcuts to preserve provider order for this widget,
+             regardless of a stale saved widgetSortby property in userdata. -->
+        <property name="sortby" tag="property" attribute="name|widgetPath" value="plugin://plugin.program.akl/collection/virtual/recently_played?reload=$INFO[Window(Home).Property(widgetreload)]$INFO[Window(Home).Property(widgetreload2)]">none</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sort" tag="property" attribute="name|widgetSort"/>
         <property name="IsGTO" tag="property" attribute="name|widget" value="GTO">true</property>
@@ -243,6 +251,10 @@
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
+        <!-- V53: AKL Recently Played is already ordered by last_launch_timestamp DESC.
+             Force Kodi/Skin Shortcuts to preserve provider order for this widget,
+             regardless of a stale saved widgetSortby property in userdata. -->
+        <property name="sortby" tag="property" attribute="name|widgetPath" value="plugin://plugin.program.akl/collection/virtual/recently_played?reload=$INFO[Window(Home).Property(widgetreload)]$INFO[Window(Home).Property(widgetreload2)]">none</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sort" tag="property" attribute="name|widgetSort"/>
         <property name="mainmenuid" tag="property" attribute="name|mainmenuid"/>
@@ -1238,6 +1250,10 @@
         <property name="target" tag="property" attribute="name|widgetTarget"/>
         <property name="target">$VAR[DefWidgetTarget]</property>
         <property name="browse">$VAR[DefBrowse]</property>
+        <!-- V53: AKL Recently Played is already ordered by last_launch_timestamp DESC.
+             Force Kodi/Skin Shortcuts to preserve provider order for this widget,
+             regardless of a stale saved widgetSortby property in userdata. -->
+        <property name="sortby" tag="property" attribute="name|widgetPath" value="plugin://plugin.program.akl/collection/virtual/recently_played?reload=$INFO[Window(Home).Property(widgetreload)]$INFO[Window(Home).Property(widgetreload2)]">none</property>
         <property name="sortby" tag="property" attribute="name|widgetSortby"/>
         <property name="sort" tag="property" attribute="name|widgetSort"/>
         <property name="banner" tag="property" attribute="name|widgetBanner"/>

@@ -61,9 +61,9 @@
             <right>111</right>
             <width>1160</width>
             <height>646</height>
-            <aspectratio aligny="center" align="center">scale</aspectratio>
-            <texture fallback="DefaultMovies.png" diffuse="diffuse/bigwiderolodex_new.png" border="0" background="true">$VAR[FanartImageFanart]</texture>
-            <visible>true</visible>
+            <aspectratio aligny="center" align="center">keep</aspectratio>
+            <texture fallback="DefaultMovies.png" border="0" background="true">$VAR[FanartImageFanart]</texture>
+            <visible>!Skin.HasSetting(akl.autoplay.trailer) | !Player.HasVideo | String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
         </control>
         <control type="group">
             <visible>Skin.HasSetting(507.noscrolling)</visible>
@@ -234,6 +234,15 @@
                         </control>
                     </control>
                     <visible>Control.IsVisible(507)</visible>
+                    <!-- AKL gameplay trailer: single Fanart panel, outside repeated list-item layouts -->
+                    <control type="videowindow">
+                        <left>609</left>
+                        <top>217</top>
+                        <width>1160</width>
+                        <height>646</height>
+                        <aspectratio aligny="center" align="center">stretch</aspectratio>
+                        <visible>Skin.HasSetting(akl.autoplay.trailer) + $EXP[AKLGameBrowse] + Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
+                    </control>
                     <control type="group">
                         <control type="wraplist" id="507">
                             <visible>Container.Content(movies) | Container.Content(musicvideos) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(seasons) | Container.Content(sets) | Container.Content(videos) | $EXP[InGameMode]</visible>

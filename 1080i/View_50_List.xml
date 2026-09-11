@@ -197,11 +197,22 @@
                 <width>PosterShadowW</width>
                 <height>PosterShadowH</height>
                 <texture border="32" infill="false">common/$VAR[shadow-24]</texture>
+                <visible>!$EXP[AKLGameArtItem]</visible>
             </control>
             <control type="image">
                 <width>PosterW</width>
                 <height>PosterH</height>
                 <texture border="5" colordiffuse="FF181818">common/box.png</texture>
+                <visible>!$EXP[AKLGameArtItem]</visible>
+            </control>
+            <!-- V46 AKL diagnostic: preserve the full selected art, with no fixed poster backing/chrome. -->
+            <control type="image">
+                <width>PosterW</width>
+                <height>PosterH</height>
+                <fadetime>PosterFanartFadetime</fadetime>
+                <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
+                <texture background="true">$VAR[PosterImage]</texture>
+                <visible>$EXP[AKLGameArtItem]</visible>
             </control>
             <control type="image">
                 <width>PosterW</width>
@@ -209,12 +220,13 @@
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                 <texture diffuse="diffuse/listposter2.png" background="true">$VAR[PosterImage]</texture>
+                <visible>!$EXP[AKLGameArtItem]</visible>
             </control>
             <control type="image">
                 <width>PosterW</width>
                 <height>PosterH</height>
                 <texture colordiffuse="Box2" border="4" background="true" infill="false">common/box21.png</texture>
-                <visible>!Skin.HasSetting(thumbnails.white)</visible>
+                <visible>!Skin.HasSetting(thumbnails.white) + !$EXP[AKLGameArtItem]</visible>
             </control>
         </control>
     </include>
@@ -268,7 +280,7 @@
                 <height>PosterH</height>
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImageSquare]</texture>
+                <texture background="true">$VAR[PosterImageSquare]</texture>
                 <visible>!String.IsEqual(ListItem.DBType,genre)</visible>
             </control>
             <control type="image">
@@ -276,7 +288,7 @@
                 <height>PosterH</height>
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture diffuse="diffuse/listposter.png" background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
+                <texture background="true" fallback="DefaultGenre.png">$VAR[ThumbImageGenres]</texture>
                 <visible>String.IsEqual(ListItem.DBType,genre)</visible>
             </control>
             <control type="image">
@@ -284,7 +296,7 @@
                 <height>PosterH</height>
                 <fadetime>PosterFanartFadetime</fadetime>
                 <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
-                <texture diffuse="diffuse/listposter.png" background="true">$INFO[ListItem.Art(back)]</texture>
+                <texture background="true">$INFO[ListItem.Art(back)]</texture>
                 <animation effect="rotatey" end="-180" start="0" center="320,0" time="0" condition="true">Conditional</animation>
                 <animation type="Visible">
                     <effect type="fade" end="100" start="0" time="0" delay="200" />

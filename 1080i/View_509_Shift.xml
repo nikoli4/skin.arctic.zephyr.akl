@@ -63,7 +63,7 @@
                         </include>
                     </control>
                 </focusedlayout>
-                <itemlayout height="332" width="592.33" condition="Skin.HasSetting(509fanart) + !Skin.HasSetting(509fanartclearart)">
+                <itemlayout height="332" width="592.33" condition="Skin.HasSetting(509fanart)">
                     <control type="group">
                         <height>325</height>
                         <include content="include.widget.landscape">
@@ -72,17 +72,7 @@
                         </include>
                     </control>
                 </itemlayout>
-                <itemlayout height="332" width="592.33" condition="Skin.HasSetting(509fanart) + Skin.HasSetting(509fanartclearart)">
-                    <control type="group">
-                        <height>325</height>
-                        <include content="include.widget.landscape">
-                            <param name="id" value="509"/>
-                            <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                            <param name="clearlogo" value="true"/>
-                        </include>
-                    </control>
-                </itemlayout>
-                <focusedlayout height="332" width="592.33" condition="Skin.HasSetting(509fanart) + !Skin.HasSetting(509fanartclearart)">
+                <focusedlayout height="332" width="592.33" condition="Skin.HasSetting(509fanart)">
                     <control type="group">
                         <height>325</height>
                         <include content="include.widget.landscape.focus">
@@ -90,18 +80,6 @@
                             <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
                             <param name="glow_left" value="11"/>
                             <param name="glow_right" value="11"/>
-                        </include>
-                    </control>
-                </focusedlayout>
-                <focusedlayout height="332" width="592.33" condition="Skin.HasSetting(509fanart) + Skin.HasSetting(509fanartclearart)">
-                    <control type="group">
-                        <height>325</height>
-                        <include content="include.widget.landscape.focus">
-                            <param name="id" value="509"/>
-                            <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
-                            <param name="glow_left" value="11"/>
-                            <param name="glow_right" value="11"/>
-                            <param name="clearlogo" value="true"/>
                         </include>
                     </control>
                 </focusedlayout>

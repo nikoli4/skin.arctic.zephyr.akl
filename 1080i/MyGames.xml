@@ -6,7 +6,7 @@
     <views>50,51,52,53,54,55,56,57,58,59,500,501,504,507,509,510,511,512,513,514,515,517,519,521,527,550,555</views>
     <controls>
         <include>GlobalBackground</include>
-        <include condition="!Skin.HasSetting(50list.low)">View_50_List</include>
+<include condition="!Skin.HasSetting(50list.low)">View_50_List</include>
         <include condition="Skin.HasSetting(50list.low)">View_50_LowList</include>
         <include condition="Skin.HasSetting(51bigwide.showinfo)">View_51_BigWide_Info</include>
         <include condition="Skin.HasSetting(51bigwide.showinfo.alternative)">View_51_BigWide</include>
@@ -348,14 +348,6 @@
                     <onclick>Skin.ToggleSetting(509fanart)</onclick>
                     <visible>Control.IsVisible(509)</visible>
                 </control>
-                <control type="radiobutton" id="9048">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>$LOCALIZE[31297]$LOCALIZE[31330]</label>
-                    <selected>Skin.HasSetting(509fanartclearart)</selected>
-                    <onclick>Skin.ToggleSetting(509fanartclearart)</onclick>
-                    <visible>Control.IsVisible(509) + Skin.HasSetting(509fanart)</visible>
-                </control>
                 <control type="button" id="9050">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
@@ -418,14 +410,6 @@
                     <visible>Control.IsVisible(510)</visible>
                     <onclick>ReloadSkin()</onclick>
                 </control>
-                <control type="radiobutton" id="90711">
-                    <include>DefContextButtonGradient</include>
-                    <align>left</align>
-                    <label>31079</label>
-                    <selected>Skin.HasSetting(ShowDiscart510)</selected>
-                    <onclick>Skin.ToggleSetting(ShowDiscart510)</onclick>
-                    <visible>Control.IsVisible(510) + Skin.HasSetting(510IconSizeSmall)</visible>
-                </control>
                 <control type="radiobutton" id="90680">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
@@ -470,7 +454,7 @@
                     <label>31575</label>
                     <selected>Skin.HasSetting(use.default.selectbox)</selected>
                     <onclick>Skin.ToggleSetting(use.default.selectbox)</onclick>
-                    <visible>Control.IsVisible(510) | Control.IsVisible(520)</visible>
+                    <visible>Control.IsVisible(520)</visible>
                 </control>
                 <control type="button" id="9070" description="Netflix Icon Size">
                     <include>DefContextButtonGradient</include>
@@ -546,6 +530,42 @@
                     <include>DefContextMenuLabel</include>
                     <label>31508</label>
                 </control>
+                <!-- AKL artwork / trailer options -->
+                <control type="radiobutton" id="9190">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>Use 3D box artwork</label>
+                    <selected>String.IsEqual(ListItem.Property(akl_art_mode),3dbox)</selected>
+                    <onclick condition="String.IsEqual(ListItem.Property(akl_art_mode),3dbox)">RunPlugin(plugin://plugin.program.akl/artmode/set?rom_id=$INFO[ListItem.Property(entityid)]&amp;mode=2d)</onclick>
+                    <onclick condition="!String.IsEqual(ListItem.Property(akl_art_mode),3dbox)">RunPlugin(plugin://plugin.program.akl/artmode/set?rom_id=$INFO[ListItem.Property(entityid)]&amp;mode=3dbox)</onclick>
+                    <visible>$EXP[AKLGameBrowse]</visible>
+                </control>
+                <control type="radiobutton" id="9191">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>Use cartridge artwork</label>
+                    <selected>String.IsEqual(ListItem.Property(akl_art_mode),cartridge)</selected>
+                    <onclick condition="String.IsEqual(ListItem.Property(akl_art_mode),cartridge)">RunPlugin(plugin://plugin.program.akl/artmode/set?rom_id=$INFO[ListItem.Property(entityid)]&amp;mode=2d)</onclick>
+                    <onclick condition="!String.IsEqual(ListItem.Property(akl_art_mode),cartridge)">RunPlugin(plugin://plugin.program.akl/artmode/set?rom_id=$INFO[ListItem.Property(entityid)]&amp;mode=cartridge)</onclick>
+                    <visible>$EXP[AKLGameBrowse]</visible>
+                </control>
+                <control type="radiobutton" id="9192">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>Auto-play gameplay video</label>
+                    <selected>Skin.HasSetting(akl.autoplay.trailer)</selected>
+                    <onclick>Skin.ToggleSetting(akl.autoplay.trailer)</onclick>
+                    <visible>$EXP[AKLGameBrowse]</visible>
+                </control>
+                <control type="radiobutton" id="9193">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>Use ClearLogo instead of title</label>
+                    <selected>Skin.HasSetting(akl.519.clearlogo.title)</selected>
+                    <onclick>Skin.ToggleSetting(akl.519.clearlogo.title)</onclick>
+                    <visible>$EXP[AKLGameBrowse] + Control.IsVisible(519)</visible>
+                </control>
+
                 <control type="radiobutton" id="9080">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
@@ -561,6 +581,7 @@
                     <selected>Skin.HasSetting(items.focus.zoom)</selected>
                     <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
                     <onclick>ReloadSkin()</onclick>
+                    <visible>Control.IsVisible(504) | Control.IsVisible(519) | Control.IsVisible(521) | Control.IsVisible(53) | Control.IsVisible(527)</visible>
                 </control>
                 <control type="button" id="9083">
                     <include>DefContextButtonGradient</include>

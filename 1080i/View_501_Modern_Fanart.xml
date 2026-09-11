@@ -118,8 +118,18 @@
                         <fadetime>PosterFanartFadetime</fadetime>
                         <width>1120</width>
                         <height>646</height>
+                        <aspectratio aligny="center" align="center">keep</aspectratio>
+                        <texture border="0" background="true">$VAR[FanartImageFanart]</texture>
+                        <visible>!Player.HasVideo | String.IsEmpty(Window(home).Property(AKLTrailerPath)) | !Skin.HasSetting(akl.autoplay.trailer)</visible>
+                    </control>
+                    <!-- AKL gameplay trailer: occupies the Modern Fanart artwork rectangle -->
+                    <control type="videowindow">
+                        <left>448</left>
+                        <top>29</top>
+                        <width>1120</width>
+                        <height>646</height>
                         <aspectratio aligny="center" align="center">scale</aspectratio>
-                        <texture diffuse="diffuse/bigwiderolodex_new.png" border="20" background="true">$VAR[FanartImageFanart]</texture>
+                        <visible>Skin.HasSetting(akl.autoplay.trailer) + $EXP[AKLGameBrowse] + Player.HasVideo + !String.IsEmpty(Window(home).Property(AKLTrailerPath))</visible>
                     </control>
                     <control type="image">
                         <left>42</left>
