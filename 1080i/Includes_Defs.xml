@@ -4061,7 +4061,7 @@
             <top>10</top>
             <right>10</right>
             <bottom>10</bottom>
-            <texture colordiffuse="Fallback" border="4" background="true">common/diffuse_box.png</texture>
+            <texture colordiffuse="Fallback" border="4" background="true" infill="false">common/box21.png</texture>
             <visible>!$EXP[AKLGameArtItem]</visible>
         </control>
         <control type="image">

@@ -91,12 +91,16 @@
         <value>$LOCALIZE[2050]: $VAR[LabelDurationTimeCheck]</value>
     </variable>
 
-    <variable name="509_Row_1">
-        <value condition="Container.Content(tvshows) | Container.Content(seasons)">$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</value>
-        <value condition="ListItem.IsCollection">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31030]</value>
-        <value condition="$EXP[InGameMode]">$VAR[GameYear]$VAR[GameRating,  •  ,]</value>
-        <value>$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
-    </variable>
+	<variable name="509_Row_1">
+		<value condition="Container.Content(tvshows) | Container.Content(seasons)">$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</value>
+		<value condition="ListItem.IsCollection">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31030]</value>
+		<value condition="$EXP[InGameMode]">$VAR[GameYear]$VAR[GameRating,  •  ,]</value>
+        <value condition="Container.Content(episodes) + Skin.HasSetting(furniture.showendtime)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$INFO[ListItem.EndTime,  •  Ends ,]$VAR[RatingLabel,  •  ,]</value>
+        <value condition="Container.Content(episodes)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
+        <value condition="Container.Content(movies) + Skin.HasSetting(furniture.showendtime)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$INFO[ListItem.EndTime,  •  Ends ,]$VAR[RatingLabel,  •  ,]</value>
+        <value condition="Container.Content(movies)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
+		<value>$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
+	</variable>
 
     <variable name="509_Row_2">
         <value condition="Container.Content(tvshows) | Container.Content(seasons)">$INFO[ListItem.Studio]</value>
@@ -443,15 +447,18 @@
         <value>$LOCALIZE[19055]</value>
     </variable>
 
-    <variable name="LabelSub_2_YearDurationRating">
-        <value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Years))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31030]$VAR[RatingLabel,  •  ,]</value>
-        <value condition="ListItem.IsCollection">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31030]$VAR[RatingLabel,  •  ,]</value>
-        <value condition="Container.Content(tvshows) | Container.Content(seasons)">$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</value>
+	<variable name="LabelSub_2_YearDurationRating">
+		<value condition="ListItem.IsCollection + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Set.Years))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.Years),,  •  ]$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31030]$VAR[RatingLabel,  •  ,]</value>
+		<value condition="ListItem.IsCollection">$INFO[Container(44023).NumItems]$INFO[Window(Home).Property(TMDbHelper.ListItem.Set.NumItems),/,] $LOCALIZE[31030]$VAR[RatingLabel,  •  ,]</value>
+		<value condition="Container.Content(tvshows) | Container.Content(seasons)">$INFO[ListItem.Year,,  •  ]$INFO[ListItem.Property(TotalEpisodes),, $LOCALIZE[20360]] $INFO[ListItem.Property(UnWatchedEpisodes),  •  , $LOCALIZE[16101]]</value>
+        <value condition="Container.Content(episodes) + Skin.HasSetting(furniture.showendtime)">$INFO[ListItem.Season,$LOCALIZE[20373] ,]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ,]$VAR[LabelPremieredYear]$VAR[LabelDurationTimeCheck,  •  ,]$INFO[ListItem.EndTime,  •  Ends ,]$VAR[RatingLabel,  •  ,]</value>
         <value condition="Container.Content(episodes)">$INFO[ListItem.Season,$LOCALIZE[20373] ,]$INFO[ListItem.Episode,  •  $LOCALIZE[20359] ,]$VAR[LabelPremieredYear]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
-        <value condition="Container.Content(movies) | Container.Content(sets)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
-        <value condition="$EXP[InGameMode]">$VAR[GameYear]$VAR[GameRating,  •  ,]</value>
-        <value>$LOCALIZE[19055]</value>
-    </variable>
+        <value condition="Container.Content(movies) + Skin.HasSetting(furniture.showendtime)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$INFO[ListItem.EndTime,  •  Ends ,]$VAR[RatingLabel,  •  ,]</value>
+        <value condition="Container.Content(movies)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
+		<value condition="Container.Content(sets)">$INFO[ListItem.Year]$VAR[LabelDurationTimeCheck,  •  ,]$VAR[RatingLabel,  •  ,]</value>
+		<value condition="$EXP[InGameMode]">$VAR[GameYear]$VAR[GameRating,  •  ,]</value>
+		<value>$LOCALIZE[19055]</value>
+	</variable>
 
     <variable name="LabelPremieredYear">
         <value condition="!String.IsEmpty(ListItem.Premiered)">$INFO[ListItem.Premiered,  •  ,]</value>

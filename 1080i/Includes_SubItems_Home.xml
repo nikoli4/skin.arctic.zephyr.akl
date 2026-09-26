@@ -386,7 +386,7 @@
                         <align>left</align>
                         <textcolor>Dark2</textcolor>
                         <visible>!Skin.HasSetting(homemenu.netflix)</visible>
-                        <label>$LOCALIZE[31399] v$INFO[System.AddonVersion(skin.arctic.zephyr.mod)]</label>
+                        <label>$LOCALIZE[31399] v$INFO[System.AddonVersion(skin.arctic.zephyr.akl)]</label>
                     </control>
                 </control>
             </control>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Foundation -->
 <window type="dialog" id="1109">
+    <defaultcontrol always="true">9001</defaultcontrol>
     <onload condition="String.IsEqual(Container.Viewmode, $LOCALIZE[31265])">SetFocus(3121)</onload>
     <onload condition="String.IsEqual(Container.Viewmode, $LOCALIZE[31072]) + !Container.Content(seasons) + !Container.Content(episodes)">SetFocus(3122)</onload>
     <onload condition="String.IsEqual(Container.Viewmode, $LOCALIZE[31523]) + [Container.Content(seasons) | Container.Content(episodes)]">SetFocus(3101)</onload>
@@ -102,7 +103,7 @@
                     <include condition="Skin.HasSetting(enable.forcedviews)">unlock_views</include>
                     <onclick>Container.SetViewMode(509)</onclick>
                     <onclick>Close</onclick>
-                    <enable>!Container.Content(episodes) + !Container.Content(actors) + !Container.Content(files)</enable>
+                    <enable>!Container.Content(actors) + !Container.Content(files)</enable>
                 </control>
                 <control type="button" id="3122">
                     <include>DefContextButtonGradient</include>
@@ -168,7 +169,7 @@
                     <include condition="Skin.HasSetting(enable.forcedviews)">unlock_views</include>
                     <onclick>Container.SetViewMode(53)</onclick>
                     <onclick>Close</onclick>
-                    <enable>!Container.Content(episodes) + !Container.Content(actors) + !Container.Content(files)</enable>
+                    <enable>!Container.Content(actors) + !Container.Content(files)</enable>
                 </control>
                 <control type="button" id="31381">
                     <include>DefContextButtonGradient</include>
@@ -176,7 +177,7 @@
                     <align>left</align>
                     <include condition="Skin.HasSetting(enable.forcedviews)">unlock_views</include>
                     <onclick>Container.SetViewMode(527)</onclick>
-                    <enable>!Container.Content(episodes) + !Container.Content(actors) + !Container.Content(files)</enable>
+                    <enable>!Container.Content(actors) + !Container.Content(files)</enable>
                     <onclick>Close</onclick>
                 </control>
                 <control type="button" id="3141">
@@ -195,7 +196,7 @@
                     <include condition="Skin.HasSetting(enable.forcedviews)">unlock_views</include>
                     <onclick>Container.SetViewMode(519)</onclick>
                     <onclick>Close</onclick>
-                    <enable>!Container.Content(episodes) + !Container.Content(actors) + !Container.Content(files)</enable>
+                    <enable>!Container.Content(actors) + !Container.Content(files)</enable>
                 </control>
             </control>
             <control type="group">

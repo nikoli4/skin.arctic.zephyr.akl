@@ -256,7 +256,7 @@
                         <visible>ControlGroup(9101).HasFocus(101)</visible>
                         <animation effect="slide" start="0" end="0,-348" time="0" condition="true">Conditional</animation>
                         <align>left</align>
-                        <label>v$INFO[System.AddonVersion(skin.arctic.zephyr.mod)]</label>
+                        <label>v$INFO[System.AddonVersion(skin.arctic.zephyr.akl)]</label>
                     </control>
                     <control type="label" id="2">
                         <description>Label 2</description>

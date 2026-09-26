@@ -28,7 +28,7 @@
                 <visible>$EXP[AKLGameBrowse] + Skin.HasSetting(akl.519.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
             </control>
             <control type="panel" id="519">
-                <visible>Container.Content(movies) | Container.Content(musicvideos) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets) | Container.Content(videos) | $EXP[InGameMode]</visible>
+                <visible>Container.Content(movies) | Container.Content(musicvideos) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets) | Container.Content(videos) | $EXP[InGameMode]</visible>
                 <top>180</top>
                 <left>70</left>
                 <width>1778</width>

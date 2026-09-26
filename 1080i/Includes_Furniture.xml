@@ -270,7 +270,7 @@
             <content>plugin://script.embuary.helper/?info=jumptoletter&amp;showall=true&amp;reload=$INFO[Container.NumItems]</content>
         </control>
     </include>
-    
+
     <include name="NewJumpbar">
         <control type="grouplist">
             <width>42</width>
@@ -329,7 +329,7 @@
             <onup>SetFocus(290001)</onup>
         </control>
     </include>
-    
+
     <include name="JumpbarHelper">
         <control type="button" id="390000">
             <include>HiddenButton</include>
@@ -610,7 +610,7 @@
             </include>
         </control>
     </include>
-    
+
     <include name="Furniture_Flags">
         <control type="group">
             <include>Animation.FurnitureVisible</include>
@@ -619,7 +619,7 @@
             </include>
         </control>
     </include>
-    
+
     <include name="Furniture_Flags_Include">
         <control type="grouplist">
             <visible>!Skin.HasSetting(furniture.coloredicons)</visible>
@@ -840,13 +840,24 @@
                 <aspectratio align="center">keep</aspectratio>
                 <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.mpaa) + !String.IsEmpty(ListItem.MPAA) + !Skin.HasSetting(furniture.coloredicons)</visible>
             </control>
-            <control type="image" description="Duration">
+			<control type="label" description="Projected End Time - Fanart and Shifted Views">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Skin.HasSetting(furniture.showendtime) + [String.IsEqual(Container.Viewmode,$LOCALIZE[31265]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31015]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31027]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31014])] + [Container.Content(movies) | Container.Content(episodes)] + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+			</control>
+			<control type="image" description="Duration">
                 <width>48</width>
                 <height>64</height>
                 <centertop>50%</centertop>
                 <texture colordiffuse="Dark1">flags/time.png</texture>
                 <aspectratio align="left">scale</aspectratio>
-                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(53) | Control.IsVisible(52) | Control.IsVisible(55)]</visible>
+                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(52) | Control.IsVisible(55) | [Control.IsVisible(53) + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]]]</visible>
             </control>
             <control type="label" description="Duration">
                 <width>auto</width>
@@ -857,8 +868,19 @@
                 <label>$VAR[LabelDurationTimeCheck]  </label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
-                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(53) | Control.IsVisible(52) | Control.IsVisible(55)]</visible>
+                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(52) | Control.IsVisible(55) | [Control.IsVisible(53) + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]]]</visible>
             </control>
+            <control type="label" description="Projected End Time">
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>Skin.HasSetting(furniture.showendtime) + Control.IsVisible(53) + [Container.Content(movies) | Container.Content(episodes)] + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+</control>
             <control type="image" description="3D">
                 <width>64</width>
                 <centertop>50%</centertop>
@@ -867,6 +889,47 @@
                 <texture colordiffuse="Dark1">flags/3d.png</texture>
                 <visible>ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)</visible>
             </control>
+			<control type="label" description="Projected End Time - Fanart and Shifted Views - After 3D">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Skin.HasSetting(furniture.showendtime) + [String.IsEqual(Container.Viewmode,$LOCALIZE[31265]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31015]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31027]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31014])] + [Container.Content(movies) | Container.Content(episodes)] + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+			</control>
+			<control type="image" description="Duration - Big Poster - After 3D">
+				<width>48</width>
+				<height>64</height>
+				<centertop>50%</centertop>
+				<texture colordiffuse="Dark1">flags/time.png</texture>
+				<aspectratio align="left">scale</aspectratio>
+				<visible>Control.IsVisible(53) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]</visible>
+			</control>
+			<control type="label" description="Duration - Big Poster - After 3D">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>$VAR[LabelDurationTimeCheck]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Control.IsVisible(53) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]</visible>
+			</control>
+			<control type="label" description="Projected End Time - Big Poster - After 3D">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Skin.HasSetting(furniture.showendtime) + Control.IsVisible(53) + [Container.Content(movies) | Container.Content(episodes)] + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+			</control>
             <control type="image" description="Bluray">
                 <width>84</width>
                 <centertop>50%</centertop>
@@ -941,7 +1004,7 @@
                 <textcolor>Dark2</textcolor>
                 <label>$INFO[ListItem.UserRating].0</label>
             </control>
-           
+
             <control type="image" description="Rotten Tomatoes">
                 <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating)) + Skin.HasSetting(furniture.showtomatoesandmetacritics) + !Skin.HasSetting(furniture.flagicons)</visible>
                 <include>Animation.FadeIn</include>
@@ -1306,13 +1369,26 @@
                 <aspectratio align="center">keep</aspectratio>
                 <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.mpaa) + !String.IsEmpty(ListItem.MPAA) + Skin.HasSetting(furniture.coloredicons) + !Skin.HasSetting(furniture.disable.default.icons.mpaa)</visible>
             </control>
+
+            <control type="label" description="Projected End Time - Fanart and Shifted Views">
+                <width>auto</width>
+                <centertop>50%</centertop>
+                <height>64</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+                <font>Flag</font>
+                <textcolor>Dark1</textcolor>
+                <visible>Skin.HasSetting(furniture.showendtime) + [String.IsEqual(Container.Viewmode,$LOCALIZE[31265]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31015]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31027]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31014])] + [Container.Content(movies) | Container.Content(episodes)] + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+            </control>
+
             <control type="image" description="Duration">
                 <width>48</width>
                 <height>64</height>
                 <centertop>50%</centertop>
                 <texture colordiffuse="Dark1">flags/time.png</texture>
                 <aspectratio align="left">scale</aspectratio>
-                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(53) | Control.IsVisible(52) | Control.IsVisible(55)]</visible>
+                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(52) | Control.IsVisible(55) | [Control.IsVisible(53) + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]]]</visible>
             </control>
             <control type="label" description="Duration">
                 <width>auto</width>
@@ -1323,8 +1399,19 @@
                 <label>$VAR[LabelDurationTimeCheck]  </label>
                 <font>Flag</font>
                 <textcolor>Dark1</textcolor>
-                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(53) | Control.IsVisible(52) | Control.IsVisible(55)]</visible>
+                <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(52) | Control.IsVisible(55) | [Control.IsVisible(53) + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]]]</visible>
             </control>
+			<control type="label" description="Projected End Time">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Skin.HasSetting(furniture.showendtime) + Control.IsVisible(53) + [Container.Content(movies) | Container.Content(episodes)] + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+			</control>
             <control type="image" description="3D">
                 <width>64</width>
                 <centertop>50%</centertop>
@@ -1333,6 +1420,47 @@
                 <texture>flags/color/other/3d.png</texture>
                 <visible>ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)</visible>
             </control>
+			<control type="image" description="Duration - Big Poster - After 3D">
+				<width>48</width>
+				<height>64</height>
+				<centertop>50%</centertop>
+				<texture colordiffuse="Dark1">flags/time.png</texture>
+				<aspectratio align="left">scale</aspectratio>
+				<visible>Control.IsVisible(53) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]</visible>
+			</control>
+			<control type="label" description="Duration - Big Poster - After 3D">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>$VAR[LabelDurationTimeCheck]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Control.IsVisible(53) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)]</visible>
+			</control>
+			<control type="label" description="Projected End Time - Fanart and Shifted Views - After 3D">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Skin.HasSetting(furniture.showendtime) + [String.IsEqual(Container.Viewmode,$LOCALIZE[31265]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31015]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31027]) | String.IsEqual(Container.Viewmode,$LOCALIZE[31014])] + [Container.Content(movies) | Container.Content(episodes)] + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+			</control>
+			<control type="label" description="Projected End Time - Big Poster - After 3D">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Skin.HasSetting(furniture.showendtime) + Control.IsVisible(53) + [Container.Content(movies) | Container.Content(episodes)] + [ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+			</control>
             <control type="image" description="Bluray">
                 <width>84</width>
                 <centertop>50%</centertop>
@@ -1574,6 +1702,17 @@
                 <textcolor>Dark1</textcolor>
                 <visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEmpty(ListItem.Duration(mins)) + [Control.IsVisible(500) | Control.IsVisible(53) | Control.IsVisible(52) | Control.IsVisible(55)]</visible>
             </control>
+			<control type="label" description="Projected End Time">
+				<width>auto</width>
+				<centertop>50%</centertop>
+				<height>64</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<label>•  $INFO[ListItem.EndTime,Ends ,]  </label>
+				<font>Flag</font>
+				<textcolor>Dark1</textcolor>
+				<visible>Skin.HasSetting(furniture.showendtime) + Control.IsVisible(53) + [Container.Content(movies) | Container.Content(episodes)] + ![ListItem.IsStereoscopic | String.Contains(ListItem.Filenameandpath,.3D)] + !String.IsEmpty(ListItem.EndTime)</visible>
+			</control>
         </control>
     </include>
 
@@ -2445,7 +2584,7 @@
         <value condition="Window.IsVisible(DialogColorPicker.xml)">$LOCALIZE[31238] $VAR[ColorPickerHeaderLabel,$LOCALIZE[31520] ,]</value>
         <value condition="Window.IsVisible(script-globalsearch.xml)">$LOCALIZE[31324] $INFO[Window.Property(GlobalSearch.SearchString),","]</value>
         <value condition="Window.IsVisible(service-CoreELEC-Settings-mainWindow.xml)">$LOCALIZE[31472]</value>
-        <value condition="Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml)">$LOCALIZE[31643]</value>        
+        <value condition="Window.IsVisible(service-LibreELEC-Settings-mainWindow.xml)">$LOCALIZE[31643]</value>
         <value condition="Window.IsVisible(MyMusicPlaylistEditor.xml)">$LOCALIZE[20011]</value>
         <value condition="Window.IsVisible(DialogButtonMenu.xml)">$LOCALIZE[33060]</value>
         <value condition="Window.IsVisible(DialogFavourites.xml)">$LOCALIZE[1036]</value>
@@ -2972,8 +3111,8 @@
             </control>
         </control>
     </include>
-    
-    
+
+
 
     <include name="Furniture_Flags_AudioDialogInfo">
         <control type="group">
@@ -2982,7 +3121,7 @@
             </include>
         </control>
     </include>
-    
+
     <include name="Furniture_Flags_Audio">
         <!-- Fakelist Container for Album Count -->
         <control type="list" id="5014">
@@ -3115,7 +3254,7 @@
                 <centertop>57%</centertop>
                 <itemgap>-17</itemgap>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.BitRate) + !Skin.HasSetting(furniture.hide.bitrate)</visible>
-                <control type="label">                
+                <control type="label">
                     <height>28</height>
                     <align>center</align>
                     <aligny>bottom</aligny>
@@ -3124,7 +3263,7 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
+                    <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/other/bit.png</texture>
                     <aspectratio>keep</aspectratio>
@@ -3159,7 +3298,7 @@
                 <centertop>57%</centertop>
                 <itemgap>-17</itemgap>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.BPM) + Skin.HasSetting(furniture.show.bpm)</visible>
-                <control type="label">                
+                <control type="label">
                     <height>28</height>
                     <align>center</align>
                     <aligny>bottom</aligny>
@@ -3168,7 +3307,7 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
+                    <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture>flags/other/bpm.png</texture>
                     <aspectratio>keep</aspectratio>
@@ -3353,7 +3492,7 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
+                    <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/other/bit.png</texture>
                     <aspectratio>keep</aspectratio>
@@ -3388,7 +3527,7 @@
                 <centertop>57%</centertop>
                 <itemgap>-17</itemgap>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.BPM) + Skin.HasSetting(furniture.show.bpm)</visible>
-                <control type="label">                
+                <control type="label">
                     <height>28</height>
                     <align>center</align>
                     <aligny>bottom</aligny>
@@ -3397,7 +3536,7 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
+                    <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture>flags/other/bpm.png</texture>
                     <aspectratio>keep</aspectratio>
@@ -3420,7 +3559,7 @@
                 <left>5</left>
                 <textcolor>Dark2</textcolor>
                 <label>$INFO[ListItem.UserRating].0</label>
-            </control>            
+            </control>
             <control type="image">
                 <width>48</width>
                 <height>64</height>
@@ -3563,7 +3702,7 @@
                 <centertop>57%</centertop>
                 <itemgap>-17</itemgap>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.BitRate)</visible>
-                <control type="label">                
+                <control type="label">
                     <height>28</height>
                     <align>center</align>
                     <aligny>bottom</aligny>
@@ -3572,7 +3711,7 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
+                    <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/other/bit.png</texture>
                     <aspectratio>keep</aspectratio>
@@ -3594,8 +3733,8 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
-                    <aspectratio>keep</aspectratio>                   
+                    <height>44</height>
+                    <aspectratio>keep</aspectratio>
                     <texture colordiffuse="Dark1">flags/other/khz.png</texture>
                     <aspectratio>keep</aspectratio>
                 </control>
@@ -3607,7 +3746,7 @@
                 <centertop>57%</centertop>
                 <itemgap>-17</itemgap>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.BPM)</visible>
-                <control type="label">                
+                <control type="label">
                     <height>28</height>
                     <align>center</align>
                     <aligny>bottom</aligny>
@@ -3616,7 +3755,7 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
+                    <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture>flags/other/bpm.png</texture>
                     <aspectratio>keep</aspectratio>
@@ -3794,7 +3933,7 @@
                 <centertop>57%</centertop>
                 <itemgap>-17</itemgap>
                 <visible>Skin.HasSetting(furniture.flagicons) + !String.IsEmpty(ListItem.BPM)</visible>
-                <control type="label">                
+                <control type="label">
                     <height>28</height>
                     <align>center</align>
                     <aligny>bottom</aligny>
@@ -3803,7 +3942,7 @@
                     <textcolor>Dark1</textcolor>
                 </control>
                 <control type="image">
-                    <height>44</height> 
+                    <height>44</height>
                     <aspectratio>keep</aspectratio>
                     <texture>flags/other/bpm.png</texture>
                     <aspectratio>keep</aspectratio>

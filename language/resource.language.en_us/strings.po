@@ -1,6 +1,6 @@
 # Kodi Media Center language file
 # Addon Name: Arctic: Zephyr - Reloaded
-# Addon id: skin.arctic.zephyr.mod
+# Addon id: skin.arctic.zephyr.akl
 # Addon Provider: jurialmunkey, beatmasterrs
 msgid ""
 msgstr ""
@@ -2615,6 +2615,10 @@ msgstr ""
 
 msgctxt "#31718"
 msgid "Sandy yellow"
+msgstr ""
+
+msgctxt "#31723"
+msgid "Show projected end time"
 msgstr ""
 
 #~ msgctxt "Addon Summary"

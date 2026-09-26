@@ -715,7 +715,7 @@
                             <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=powermenu)</onclick>
                         </control>
                     </control>
-                    
+
                     <!-- Now Playing -->
                     <control type="grouplist" id="13200">
                         <description>Control Area</description>
@@ -1763,7 +1763,7 @@
                                 <height>70</height>
                                 <label>$LOCALIZE[31495]</label>
                             </control>
-                        </control> 
+                        </control>
                         <control type="radiobutton" id="9699">
                             <width>1360</width>
                             <visible>ControlGroup(9100).HasFocus(9110)</visible>
@@ -1789,7 +1789,7 @@
                             <onclick>SetProperty(colordesc,indicatorcolorbackgroundisplayingicon.name,home)</onclick>
 	                        <onclick>Skin.SetColor(indicatorcolorbackgroundisplayingicon.name, $LOCALIZE[31695],,special://skin/extras/colors/$INFO[Skin.String(colorpalette)].xml)</onclick>
                             <enable>Skin.HasSetting(furniture.markers.alternative)</enable>
-                        </control>                       
+                        </control>
                         <control type="radiobutton" id="9673">
                             <width>1360</width>
                             <visible>ControlGroup(9100).HasFocus(9110)</visible>
@@ -2039,7 +2039,7 @@
                             <disabledcolor>PanelWhite70</disabledcolor>
                             <animation effect="slide" start="0" end="0,-298" time="150" condition="true">Conditional</animation>
                             <align>left</align>
-                            <label>v$INFO[System.AddonVersion(skin.arctic.zephyr.mod)]</label>
+                            <label>v$INFO[System.AddonVersion(skin.arctic.zephyr.akl)]</label>
                         </control>
                         <control type="button" id="9911">
                             <width>1360</width>
@@ -2460,6 +2460,14 @@
                             <onclick>ActivateWindow(1266)</onclick>
                             <enable>!Skin.HasSetting(furniture.flags)</enable>
                         </control>
+						<control type="radiobutton" id="9264" description="Show Projected End Time">
+							<width>1360</width>
+							<visible>ControlGroup(9100).HasFocus(9106)</visible>
+							<include>DefSettingsButtonGradientSkinSettings</include>
+							<label>$LOCALIZE[31723]</label>
+							<selected>Skin.HasSetting(furniture.showendtime)</selected>
+							<onclick>Skin.ToggleSetting(furniture.showendtime)</onclick>
+						</control>
                         <control type="grouplist" id="9274">
                             <visible>ControlGroup(9100).HasFocus(9106)</visible>
                             <orientation>horizontal</orientation>
@@ -3135,7 +3143,7 @@
                             <label>31654</label>
                             <selected>!Skin.HasSetting(home.widgets.show.reflections) + !Skin.HasSetting(show.reflections)</selected>
                             <onclick condition="Skin.HasSetting(show.reflections) | Skin.HasSetting(home.widgets.show.reflections)">Skin.Reset(home.widgets.show.reflections)</onclick>
-                            <onclick condition="Skin.HasSetting(show.reflections) | Skin.HasSetting(home.widgets.show.reflections)">Skin.Reset(show.reflections)</onclick>                            
+                            <onclick condition="Skin.HasSetting(show.reflections) | Skin.HasSetting(home.widgets.show.reflections)">Skin.Reset(show.reflections)</onclick>
                             <onclick condition="!Skin.HasSetting(show.reflections) | !Skin.HasSetting(home.widgets.show.reflections)">Skin.SetBool(home.widgets.show.reflections)</onclick>
                             <onclick condition="!Skin.HasSetting(show.reflections) | !Skin.HasSetting(home.widgets.show.reflections)">Skin.SetBool(show.reflections)</onclick>
                         </control>

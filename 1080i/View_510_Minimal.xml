@@ -429,16 +429,28 @@
                     <font>HomeFO</font>
                     <label>$INFO[ListItem.Year]</label>
                 </control>
-                <control type="label">
-                    <top>265</top>
-                    <left>-130</left>
-                    <width>100</width>
-                    <align>center</align>
-                    <description>Header Label</description>
-                    <textcolor>Dark3</textcolor>
-                    <font>Small</font>
-                    <label>$VAR[LabelDurationTimeCheck]</label>
-                </control>
+				<control type="label">
+					<top>265</top>
+					<left>-130</left>
+					<width>100</width>
+					<align>center</align>
+					<description>Runtime Label</description>
+					<textcolor>Dark3</textcolor>
+					<font>Small</font>
+					<label>$VAR[LabelDurationTimeCheck]</label>
+				</control>
+
+				<control type="label">
+					<top>300</top>
+					<left>-160</left>
+					<width>160</width>
+					<align>center</align>
+					<description>Projected End Time Label</description>
+					<textcolor>Dark3</textcolor>
+					<font>Tiny</font>
+					<label>$INFO[ListItem.EndTime,Ends ,]</label>
+					<visible>Skin.HasSetting(furniture.showendtime) + [Container.Content(movies) | Container.Content(episodes)] + !String.IsEmpty(ListItem.EndTime)</visible>
+				</control>
             </control>
             <control type="scrollbar" id="1651">
                 <include content="scrollbar_hor">

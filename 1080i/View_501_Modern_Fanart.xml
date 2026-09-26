@@ -225,27 +225,27 @@
                                 <param name="left" value="200" />
                             </include>
                         </control>
-                        <control type="group">
-                            <posy>460</posy>
-                            <posx>0</posx>
-                            <width>1050</width>
-                            <visible>Skin.HasSetting(furniture.numericrating)</visible>
-                            <animation effect="slide" start="0" end="0,52" time="0" condition="Skin.HasSetting(hidevotesfanart)">Conditional</animation>
-                            <include content="Def_Flag">
-                                <param name="Star" value="Flagstar1" />
-                            </include>
-                            <control type="label">
-                                <left>45</left>
-                                <width min="48">auto</width>
-                                <centertop>50%</centertop>
-                                <height>64</height>
-                                <align>left</align>
-                                <aligny>center</aligny>
-                                <label>$VAR[RatingLabel]</label>
-                                <font>Flag</font>
-                                <textcolor>Dark2</textcolor>
-                            </control>
-                        </control>
+						<control type="group">
+							<posy>460</posy>
+							<posx>0</posx>
+							<width>1050</width>
+							<visible>Skin.HasSetting(furniture.numericrating)</visible>
+							<animation effect="slide" start="0" end="0,52" time="0" condition="Skin.HasSetting(hidevotesfanart)">Conditional</animation>
+							<include content="Def_Flag">
+								<param name="Star" value="Flagstar1" />
+							</include>
+							<control type="label">
+								<left>45</left>
+								<width min="48">auto</width>
+								<centertop>50%</centertop>
+								<height>64</height>
+								<align>left</align>
+								<aligny>center</aligny>
+								<label>$VAR[RatingLabel]</label>
+								<font>Flag</font>
+								<textcolor>Dark2</textcolor>
+							</control>
+						</control>
                     </control>
                 </control>
                 <include content="IndicatorPoster" condition="!Skin.HasSetting(hide.markers)">
