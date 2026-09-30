@@ -650,31 +650,31 @@ msgid "Tv Shows by"
 msgstr ""
 
 msgctxt "#31161"
-msgid "[B]Configure System Settings[/B][CR][CR] •     Setup and calibrate displays[CR] •     Configure audio output[CR] •     Setup remote controls[CR] •     Set power saving options[CR] •     Enable debugging[CR] •     Setup master lock"
+msgid "[B]Configure System Settings[/B][CR][CR] Ã¢â‚¬Â¢     Setup and calibrate displays[CR] Ã¢â‚¬Â¢     Configure audio output[CR] Ã¢â‚¬Â¢     Setup remote controls[CR] Ã¢â‚¬Â¢     Set power saving options[CR] Ã¢â‚¬Â¢     Enable debugging[CR] Ã¢â‚¬Â¢     Setup master lock"
 msgstr ""
 
 msgctxt "#31162"
-msgid "[B]Configure Add-Ons[/B][CR][CR] •     Manage your installed Add-ons[CR] •     Install Add-ons from kodi.tv[CR] •     Modify Add-on settings"
+msgid "[B]Configure Add-Ons[/B][CR][CR] Ã¢â‚¬Â¢     Manage your installed Add-ons[CR] Ã¢â‚¬Â¢     Install Add-ons from kodi.tv[CR] Ã¢â‚¬Â¢     Modify Add-on settings"
 msgstr ""
 
 msgctxt "#31163"
-msgid "[B]Configure TV Settings[/B][CR][CR] •     Change full screen info[CR] •     Manage EPG data settings"
+msgid "[B]Configure TV Settings[/B][CR][CR] Ã¢â‚¬Â¢     Change full screen info[CR] Ã¢â‚¬Â¢     Manage EPG data settings"
 msgstr ""
 
 msgctxt "#31164"
-msgid "[B]Configure Service Settings[/B][CR][CR] •     Control via UPnP and HTTP[CR] •     Configure file sharing[CR] •     Enable Zeroconf[CR] •     Configure AirPlay"
+msgid "[B]Configure Service Settings[/B][CR][CR] Ã¢â‚¬Â¢     Control via UPnP and HTTP[CR] Ã¢â‚¬Â¢     Configure file sharing[CR] Ã¢â‚¬Â¢     Enable Zeroconf[CR] Ã¢â‚¬Â¢     Configure AirPlay"
 msgstr ""
 
 msgctxt "#31165"
-msgid "[B]Configure Profile Settings[/B][CR][CR] •     Setup user profiles[CR] •     Enable login screen[CR] •     Set master locks[CR] •     Control access to content"
+msgid "[B]Configure Profile Settings[/B][CR][CR] Ã¢â‚¬Â¢     Setup user profiles[CR] Ã¢â‚¬Â¢     Enable login screen[CR] Ã¢â‚¬Â¢     Set master locks[CR] Ã¢â‚¬Â¢     Control access to content"
 msgstr ""
 
 msgctxt "#31166"
-msgid "[B]Configure Skin Settings[/B][CR][CR] •     Customise the home screen[CR] •     Set background options[CR] •     Configure OSD options[CR] •     Enable add-on support[CR] •     Disable screen elements"
+msgid "[B]Configure Skin Settings[/B][CR][CR] Ã¢â‚¬Â¢     Customise the home screen[CR] Ã¢â‚¬Â¢     Set background options[CR] Ã¢â‚¬Â¢     Configure OSD options[CR] Ã¢â‚¬Â¢     Enable add-on support[CR] Ã¢â‚¬Â¢     Disable screen elements"
 msgstr ""
 
 msgctxt "#31167"
-msgid "[B]View System Information[/B][CR][CR] •     Summary[CR] •     Storage[CR] •     Network[CR] •     Video[CR] •     Hardware[CR] •     PVR Backend"
+msgid "[B]View System Information[/B][CR][CR] Ã¢â‚¬Â¢     Summary[CR] Ã¢â‚¬Â¢     Storage[CR] Ã¢â‚¬Â¢     Network[CR] Ã¢â‚¬Â¢     Video[CR] Ã¢â‚¬Â¢     Hardware[CR] Ã¢â‚¬Â¢     PVR Backend"
 msgstr ""
 
 msgctxt "#31168"
@@ -1102,15 +1102,15 @@ msgid "Most played Song"
 msgstr ""
 
 msgctxt "#31275"
-msgid "[B]Configure Interface Settings[/B][CR][CR] •     Skin[CR] •     Region[CR] •     Control[CR] •     Screensaver[CR] •     Master Lock[CR]"
+msgid "[B]Configure Interface Settings[/B][CR][CR] Ã¢â‚¬Â¢     Skin[CR] Ã¢â‚¬Â¢     Region[CR] Ã¢â‚¬Â¢     Control[CR] Ã¢â‚¬Â¢     Screensaver[CR] Ã¢â‚¬Â¢     Master Lock[CR]"
 msgstr ""
 
 msgctxt "#31276"
-msgid "[B]Configure Library Settings[/B][CR][CR] •     Display[CR] •     Navigation[CR] •     Media Database[CR]"
+msgid "[B]Configure Library Settings[/B][CR][CR] Ã¢â‚¬Â¢     Display[CR] Ã¢â‚¬Â¢     Navigation[CR] Ã¢â‚¬Â¢     Media Database[CR]"
 msgstr ""
 
 msgctxt "#31277"
-msgid "[B]Configure Player Settings[/B][CR][CR] •     Playback Actions[CR] •     How Content is Played[CR]"
+msgid "[B]Configure Player Settings[/B][CR][CR] Ã¢â‚¬Â¢     Playback Actions[CR] Ã¢â‚¬Â¢     How Content is Played[CR]"
 msgstr ""
 
 msgctxt "#31278"
@@ -1474,11 +1474,11 @@ msgid "last on"
 msgstr ""
 
 msgctxt "#31373"
-msgid "[B]Configure LibreELEC Settings[/B][CR][CR] •     Setup system settings[CR] •     Configure system updatesSetup and calibrate network[CR] •     Setup and calibrate network[CR] •     Configure connections [CR]"
+msgid "[B]Configure LibreELEC Settings[/B][CR][CR] Ã¢â‚¬Â¢     Setup system settings[CR] Ã¢â‚¬Â¢     Configure system updatesSetup and calibrate network[CR] Ã¢â‚¬Â¢     Setup and calibrate network[CR] Ã¢â‚¬Â¢     Configure connections [CR]"
 msgstr ""
 
 msgctxt "#31374"
-msgid "[B]Configure CoreELEC Settings[/B][CR][CR] •     Setup system settings[CR] •     Configure system updatesSetup and calibrate network[CR] •     Setup and calibrate network[CR] •     Configure connections [CR]"
+msgid "[B]Configure CoreELEC Settings[/B][CR][CR] Ã¢â‚¬Â¢     Setup system settings[CR] Ã¢â‚¬Â¢     Configure system updatesSetup and calibrate network[CR] Ã¢â‚¬Â¢     Setup and calibrate network[CR] Ã¢â‚¬Â¢     Configure connections [CR]"
 msgstr ""
 
 msgctxt "#31375"
@@ -2619,4 +2619,8 @@ msgstr ""
 
 msgctxt "#31723"
 msgid "Show projected end time"
+msgstr ""
+
+msgctxt "#31724"
+msgid "Import settings from Arctic: Zephyr - Reloaded"
 msgstr ""

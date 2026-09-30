@@ -1919,6 +1919,13 @@
                             <onclick condition="!System.HasAddon(script.xbmcbackup)">InstallAddon(script.xbmcbackup)</onclick>
                             <onclick condition="System.HasAddon(script.xbmcbackup)">Addon.OpenSettings(script.xbmcbackup)</onclick>
                         </control>
+                        <control type="button" id="9442" description="Import Arctic Zephyr Reloaded Settings">
+                            <width>1360</width>
+                            <visible>ControlGroup(9100).HasFocus(9112)</visible>
+                            <include>DefSettingsButtonGradientSkinSettings</include>
+                            <label>31724</label>
+                            <onclick>RunScript(special://skin/resources/lib/migrate_az_settings.py)</onclick>
+                        </control>
                         <control type="button" id="9441" description="Reset Skin to Defaults">
                             <width>1360</width>
                             <visible>ControlGroup(9100).HasFocus(9112)</visible>
