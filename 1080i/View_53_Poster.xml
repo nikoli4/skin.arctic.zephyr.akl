@@ -73,7 +73,7 @@
                     <left>0</left>
                     <width>PosterW</width>
                     <height>640</height>
-                    <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
+                    <texture colordiffuse="Fallback" border="4" background="true" infill="false">common/box21.png</texture>
                     <visible>!$EXP[InGameMode]</visible>
                 </control>
                 <!-- Game/AKL poster: preserve existing custom sizing -->
