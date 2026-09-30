@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import sys
 
 import xbmc
 import xbmcgui
@@ -21,10 +22,19 @@ SOURCE_SETTINGS = os.path.join(
     "settings.xml"
 )
 
-TARGET_SETTINGS = os.path.join(
+TARGET_DATA = os.path.join(
     ADDON_DATA,
-    TARGET_SKIN_ID,
+    TARGET_SKIN_ID
+)
+
+TARGET_SETTINGS = os.path.join(
+    TARGET_DATA,
     "settings.xml"
+)
+
+AUTO_MIGRATION_MARKER = os.path.join(
+    TARGET_DATA,
+    ".az_settings_import_prompted"
 )
 
 SOURCE_PROPERTIES = os.path.join(
@@ -74,24 +84,65 @@ def copy_file(source, target, description):
     return True
 
 
-def migrate():
-    log("Migration started.")
+def mark_auto_prompt_handled():
+    try:
+        ensure_parent(AUTO_MIGRATION_MARKER)
+
+        with open(AUTO_MIGRATION_MARKER, "w") as marker:
+            marker.write("1\n")
+
+        log("Automatic migration prompt marked as handled.")
+    except OSError as exc:
+        log(
+            "Unable to create automatic migration marker: {}".format(
+                exc
+            )
+        )
+
+
+def migrate(auto=False):
+    mode = "automatic" if auto else "manual"
+
+    log("{} migration started.".format(mode.capitalize()))
 
     if not os.path.isfile(SOURCE_SETTINGS):
-        xbmcgui.Dialog().ok(
-            "Import Arctic: Zephyr - Reloaded Settings",
-            "No settings from the original Arctic: Zephyr - Reloaded skin were found."
-        )
-        log("Migration stopped: original skin settings not found.")
+        if auto:
+            log(
+                "Automatic migration skipped: original skin settings "
+                "were not found."
+            )
+        else:
+            xbmcgui.Dialog().ok(
+                "Import Arctic: Zephyr - Reloaded Settings",
+                "No settings from the original Arctic: Zephyr - Reloaded "
+                "skin were found."
+            )
+            log(
+                "Manual migration stopped: original skin settings "
+                "not found."
+            )
         return
 
-    if not xbmcgui.Dialog().yesno(
+    if auto and os.path.isfile(AUTO_MIGRATION_MARKER):
+        log(
+            "Automatic migration skipped: migration prompt was "
+            "already handled."
+        )
+        return
+
+    confirmed = xbmcgui.Dialog().yesno(
         "Import Arctic: Zephyr - Reloaded Settings",
-        "Import your settings from Arctic: Zephyr - Reloaded into the AKL Edition?\n\n"
-        "This will replace the current AKL Edition skin settings and home-screen "
-        "widget configuration."
-    ):
-        log("Migration cancelled by user.")
+        "Existing settings from Arctic: Zephyr - Reloaded were found.\n\n"
+        "Would you like to import them into the AKL Edition?\n\n"
+        "This will replace the current AKL Edition skin settings and "
+        "home-screen widget configuration."
+    )
+
+    if auto:
+        mark_auto_prompt_handled()
+
+    if not confirmed:
+        log("{} migration cancelled by user.".format(mode.capitalize()))
         return
 
     settings_copied = copy_file(
@@ -109,9 +160,15 @@ def migrate():
     if properties_copied and os.path.isfile(TARGET_HASH):
         try:
             os.remove(TARGET_HASH)
-            log("Removed AKL Skin Shortcuts hash to force rebuild.")
+            log(
+                "Removed AKL Skin Shortcuts hash to force rebuild."
+            )
         except OSError as exc:
-            log("Unable to remove Skin Shortcuts hash: {}".format(exc))
+            log(
+                "Unable to remove Skin Shortcuts hash: {}".format(
+                    exc
+                )
+            )
 
     if settings_copied and properties_copied:
         message = (
@@ -121,9 +178,9 @@ def migrate():
         )
     elif settings_copied:
         message = (
-            "The skin settings were imported successfully. No saved home-screen "
-            "widget configuration was found for Arctic: Zephyr - Reloaded, so "
-            "widgets were not changed."
+            "The skin settings were imported successfully. No saved "
+            "home-screen widget configuration was found for Arctic: "
+            "Zephyr - Reloaded, so widgets were not changed."
         )
     else:
         message = "The settings could not be imported."
@@ -133,8 +190,13 @@ def migrate():
         message
     )
 
-    log("Migration finished.")
+    log("{} migration finished.".format(mode.capitalize()))
 
 
 if __name__ == "__main__":
-    migrate()
+    auto_mode = (
+        len(sys.argv) > 1 and
+        sys.argv[1].lower() == "auto"
+    )
+
+    migrate(auto=auto_mode)
