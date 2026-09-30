@@ -1,3 +1,6 @@
+[B]3.0.12[/B]
+Fixed corrupted English localization strings
+
 [B]3.0.11[/B]
 Added optional import of settings and home-screen configuration from the original Arctic: Zephyr - Reloaded skin
 Added automatic first-start migration prompt with manual import option in Skin Settings
