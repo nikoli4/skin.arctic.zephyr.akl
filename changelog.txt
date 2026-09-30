@@ -1,3 +1,17 @@
+[B]3.0.11[/B]
+Added optional import of settings and home-screen configuration from the original Arctic: Zephyr - Reloaded skin
+Added automatic first-start migration prompt with manual import option in Skin Settings
+Fixed transparency of selected artwork in Big Poster view
+Removed stale AKL Showcase view reference
+Updated preview screenshots
+
+[B]3.0.9[/B]
+Added AKL-specific game artwork support including 2D box, 3D box, and cartridge/disc artwork
+Added per-system artwork selection support for AKL
+Improved AKL trailer handling and game view integration
+Improved Recently Played Home widget artwork and ordering
+Added AKL-focused view and presentation refinements
+
 [B]3.0.3[/B]
 Fixed issue with tv show indicators
 
