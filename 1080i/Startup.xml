@@ -48,6 +48,7 @@
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetString(colorpalette,rainbow)</onload>
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(disable.only.hide.menu.items)</onload>
     <onload condition="!Skin.HasSetting(startup.init)">Skin.SetBool(startup.init)</onload>
+    <onload>AlarmClock(AZAKLSettingsImport,RunScript(special://skin/resources/lib/migrate_az_settings.py,auto),00:06,silent)</onload>
     
     <!-- Go home -->
     <onload condition="!Skin.HasSetting(disable.startup.window)">ReplaceWindow(1150)</onload>
