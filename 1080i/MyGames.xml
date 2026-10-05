@@ -562,15 +562,22 @@
                     <onclick>Skin.ToggleSetting(akl.autoplay.trailer)</onclick>
                     <visible>$EXP[AKLGameBrowse]</visible>
                 </control>
-				<control type="radiobutton" id="9193">
+                <control type="radiobutton" id="9193">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>Use ClearLogo instead of title</label>
-                    <selected>Skin.HasSetting(akl.519.clearlogo.title)</selected>
-                    <onclick>Skin.ToggleSetting(akl.519.clearlogo.title)</onclick>
-                    <visible>$EXP[AKLGameBrowse] + Control.IsVisible(519)</visible>
+                    <selected>Skin.HasSetting(akl.clearlogo.title)</selected>
+                    <onclick>Skin.ToggleSetting(akl.clearlogo.title)</onclick>
+                    <visible>$EXP[AKLGameBrowse]</visible>
                 </control>
-
+                <control type="radiobutton" id="9194">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>Use controller icon instead of skin default</label>
+                    <selected>Skin.HasSetting(akl.use.controller.header.icon)</selected>
+                    <onclick>Skin.ToggleSetting(akl.use.controller.header.icon)</onclick>
+                    <visible>$EXP[AKLGameBrowse]</visible>
+                </control>
                 <control type="radiobutton" id="9080">
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
@@ -592,7 +599,7 @@
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>$LOCALIZE[31590]:</label>
-                    <label2>$VAR[Label_ItemsGlow]</label2>                          
+                    <label2>$VAR[Label_ItemsGlow]</label2>
                     <onclick condition="!Skin.HasSetting(items.focus.glow)">Skin.SetBool(items.focus.glow)</onclick>
                     <onclick condition="!Skin.HasSetting(items.focus.glow)">Skin.SetBool(items.focus.glow.low)</onclick>
                     <onclick condition="Skin.HasSetting(items.focus.glow) + !Skin.HasSetting(items.focus.glow.full) + Skin.HasSetting(items.focus.glow.low)">Skin.Reset(items.focus.glow.low)</onclick>

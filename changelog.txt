@@ -1,3 +1,10 @@
+[B]3.0.13[/B]
+Added optional AKL controller artwork in the header
+Added controller glass overlay for AKL header artwork
+Added ClearLogo title support to additional AKL game views
+Unified the AKL ClearLogo title setting across supported views
+Improved AKL view presentation while preserving standard media behavior
+
 [B]3.0.12[/B]
 Fixed corrupted English localization strings
 

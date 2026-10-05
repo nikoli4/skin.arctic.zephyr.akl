@@ -15,7 +15,7 @@
                 <textcolor>Dark1</textcolor>
                 <font>SmallBold</font>
                 <label fallback="19055">$INFO[ListItem.Title]</label>
-                <visible>!$EXP[AKLGameBrowse] | !Skin.HasSetting(akl.519.clearlogo.title) | String.IsEmpty(ListItem.Art(clearlogo))</visible>
+                <visible>!$EXP[AKLGameBrowse] | !Skin.HasSetting(akl.clearlogo.title) | String.IsEmpty(ListItem.Art(clearlogo))</visible>
             </control>
             <!-- AKL Shifted ClearArt: optionally use clearlogo in the title position -->
             <control type="image" description="AKL clearlogo title replacement">
@@ -25,7 +25,7 @@
                 <height>80</height>
                 <aspectratio scalediffuse="true" align="left" aligny="center">keep</aspectratio>
                 <texture background="true">$VAR[ClearLogoTopVar]</texture>
-                <visible>$EXP[AKLGameBrowse] + Skin.HasSetting(akl.519.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+                <visible>$EXP[AKLGameBrowse] + Skin.HasSetting(akl.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
             </control>
             <control type="panel" id="519">
                 <visible>Container.Content(movies) | Container.Content(musicvideos) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(sets) | Container.Content(videos) | $EXP[InGameMode]</visible>

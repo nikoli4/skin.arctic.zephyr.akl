@@ -2542,6 +2542,7 @@
         <value condition="Container.Content(songs)">special://skin/extras/icons/songs.png</value>
         <value condition="Container.Content(livetv)">special://skin/extras/icons/livetv.png</value>
         <value condition="Container.Content(files)">special://skin/extras/icons/files.png</value>
+        <value condition="$EXP[InGameMode] + Skin.HasSetting(akl.use.controller.header.icon) + !String.IsEmpty(ListItem.Property(akl.controller))">$INFO[ListItem.Property(akl.controller)]</value>
         <value condition="$EXP[InGameMode]">special://skin/extras/icons/games.png</value>
         <value condition="Container.Content(plugins)">special://skin/extras/icons/video-addons.png</value>
         <value condition="Container.Content(addons)">special://skin/extras/icons/addons.png</value>
@@ -2698,12 +2699,41 @@
                     <height>80</height>
                     <texture colordiffuse="Panel" border="8">common/box.png</texture>
                 </control>
+                <!-- Standard Arctic Zephyr header icon -->
                 <control type="image">
                     <top>-14</top>
                     <left>-14</left>
                     <width>108</width>
                     <height>108</height>
                     <texture colordiffuse="PanelWhite100" border="8">$VAR[HeaderIcon]</texture>
+                    <visible>![$EXP[InGameMode] + Skin.HasSetting(akl.use.controller.header.icon) + !String.IsEmpty(ListItem.Property(akl.controller))]</visible>
+                    <visible>!Container.Scrolling</visible>
+                    <visible>!Skin.HasSetting(hide.busydialog) | !Window.IsVisible(DialogBusy.xml)</visible>
+                    <include>Animation.FurnitureIcon</include>
+                </control>
+
+                <!-- AKL system controller artwork -->
+                <control type="image">
+                    <top>4</top>
+                    <left>4</left>
+                    <width>72</width>
+                    <height>72</height>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <texture>$INFO[ListItem.Property(akl.controller)]</texture>
+                    <visible>$EXP[InGameMode] + Skin.HasSetting(akl.use.controller.header.icon) + !String.IsEmpty(ListItem.Property(akl.controller))</visible>
+                    <visible>!Container.Scrolling</visible>
+                    <visible>!Skin.HasSetting(hide.busydialog) | !Window.IsVisible(DialogBusy.xml)</visible>
+                    <include>Animation.FurnitureIcon</include>
+                </control>
+                <!-- AKL controller glass highlight -->
+                <control type="image">
+                    <top>-3</top>
+                    <left>-3</left>
+                    <width>86</width>
+                    <height>86</height>
+                    <aspectratio>stretch</aspectratio>
+                    <texture>misc/controller_glass.png</texture>
+                    <visible>$EXP[InGameMode] + Skin.HasSetting(akl.use.controller.header.icon) + !String.IsEmpty(ListItem.Property(akl.controller))</visible>
                     <visible>!Container.Scrolling</visible>
                     <visible>!Skin.HasSetting(hide.busydialog) | !Window.IsVisible(DialogBusy.xml)</visible>
                     <include>Animation.FurnitureIcon</include>

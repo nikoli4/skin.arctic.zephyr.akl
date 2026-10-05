@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Foundation -->
 <window id="1">
     <onunload condition="Skin.HasSetting(akl.autoplay.trailer) + !String.IsEmpty(Window(home).Property(AKLTrailerPath))">Stop</onunload>
@@ -549,9 +549,17 @@
                     <include>DefContextButtonGradient</include>
                     <align>left</align>
                     <label>Use ClearLogo instead of title</label>
-                    <selected>Skin.HasSetting(akl.519.clearlogo.title)</selected>
-                    <onclick>Skin.ToggleSetting(akl.519.clearlogo.title)</onclick>
-                    <visible>$EXP[AKLGameBrowse] + Control.IsVisible(519)</visible>
+                    <selected>Skin.HasSetting(akl.clearlogo.title)</selected>
+                    <onclick>Skin.ToggleSetting(akl.clearlogo.title)</onclick>
+                    <visible>$EXP[AKLGameBrowse]</visible>
+                </control>
+                <control type="radiobutton" id="9194">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>Use controller icon instead of skin default</label>
+                    <selected>Skin.HasSetting(akl.use.controller.header.icon)</selected>
+                    <onclick>Skin.ToggleSetting(akl.use.controller.header.icon)</onclick>
+                    <visible>$EXP[AKLGameBrowse]</visible>
                 </control>
 
                 <control type="radiobutton" id="9080">

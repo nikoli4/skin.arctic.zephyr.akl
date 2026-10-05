@@ -154,6 +154,18 @@
                             <selectedcolor>Dark1</selectedcolor>
                             <label>$INFO[ListItem.Label]</label>
                             <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                            <visible>!$EXP[AKLGameBrowse] | !Skin.HasSetting(akl.clearlogo.title) | String.IsEmpty(ListItem.Art(clearlogo))</visible>
+                        </control>
+
+                        <!-- AKL Modern Fanart: optionally use clearlogo in the title position -->
+                        <control type="image" description="AKL clearlogo title replacement">
+                            <top>0</top>
+                            <left>0</left>
+                            <width>347</width>
+                            <height>120</height>
+                            <aspectratio scalediffuse="true" align="center" aligny="center">keep</aspectratio>
+                            <texture background="true">$VAR[ClearLogoTopVar]</texture>
+                            <visible>$EXP[AKLGameBrowse] + Skin.HasSetting(akl.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
                         </control>
                         <control type="label">
                             <top>50</top>

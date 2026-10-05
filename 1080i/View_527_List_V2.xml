@@ -35,7 +35,7 @@
             </include>
         </focusedlayout>
     </include>
-    
+
     <include name="527Wrap">
         <control type="wraplist" id="527">
             <include>527Content</include>
@@ -47,13 +47,13 @@
             <include>527Content</include>
         </control>
     </include>
-    
+
     <include name="527List">
         <control type="panel" id="527">
             <include>527Content</include>
         </control>
     </include>
-    
+
     <include name="View_527_List_V2">
         <control type="group">
             <include>Animation.Common</include>
@@ -71,6 +71,18 @@
                     <font>SmallBold</font>
                     <label fallback="19055">$INFO[ListItem.Title]</label>
                     <include condition="Skin.HasSetting(labels.autoscroll)">LabelScroll</include>
+                    <visible>!$EXP[AKLGameBrowse] | !Skin.HasSetting(akl.clearlogo.title) | String.IsEmpty(ListItem.Art(clearlogo))</visible>
+                </control>
+
+                <!-- AKL List V2: optionally use clearlogo in the title position -->
+                <control type="image" description="AKL clearlogo title replacement">
+                    <left>0</left>
+                    <top>-20</top>
+                    <width>500</width>
+                    <height>100</height>
+                    <aspectratio scalediffuse="true" align="left" aligny="center">keep</aspectratio>
+                    <texture background="true">$VAR[ClearLogoTopVar]</texture>
+                    <visible>$EXP[AKLGameBrowse] + Skin.HasSetting(akl.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
                 </control>
                 <control type="grouplist">
                     <orientation>vertical</orientation>
