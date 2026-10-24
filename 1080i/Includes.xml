@@ -90,7 +90,7 @@
     <expression name="VideoOSDShort">!String.IsEmpty(Window(home).Property(osdshowinfo)) | [Player.ShowInfo | !String.IsEmpty(Window(home).Property(osdinfo))] | [Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
     <expression name="VideoOSDWide">String.IsEmpty(Window(home).Property(osdshowinfo)) + String.IsEmpty(Window(home).Property(osdinfo)) + !Player.ShowInfo + ![Window.IsVisible(videoosd) + Window.IsVisible(DialogFullScreenInfo.xml)]</expression>
     <expression name="TrailerWindowIsActive">Skin.HasSetting(home.netflix.autoplay.trailer) + [[Window.IsVisible(Home.xml) + [$EXP[HomeIsModernMultiWidgetsNetflix] | $EXP[HomeIsCleanMinimal] | $EXP[HomeIsVerticalMultiWidgetsNetflix]]] | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(510)] + !Window.IsVisible(DialogVideoInfo.xml) + String.IsEqual(Window(home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
-    <expression name="TrailerIsReady">Skin.HasSetting(home.netflix.autoplay.trailer) + [Window.IsVisible(Home.xml) | Window.IsVisible(MyVideoNav.xml) | $EXP[InGameMode]] + !Control.HasFocus(300) + !Player.HasMedia + !String.IsEmpty(Window(home).Property(listitem.trailer)) + !System.HasVisibleModalDialog + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(home).Property(TrailerPath),Window(home).Property(listitem.trailer)) + !System.IdleTime(30)</expression>
+    <expression name="TrailerIsReady">Skin.HasSetting(home.netflix.autoplay.trailer) + $EXP[InGameMode] + !Control.HasFocus(300) + !Player.HasMedia + !String.IsEmpty(Window(home).Property(listitem.trailer)) + !System.HasVisibleModalDialog + !Window.IsVisible(script-globalsearch.xml) + !String.IsEqual(Window(home).Property(TrailerPath),Window(home).Property(listitem.trailer)) + !System.IdleTime(30)</expression>
     <expression name="TrailerWaitingForPlayer">!String.IsEmpty(Window(home).Property(TrailerPath2)) + !String.IsEmpty(Window(home).Property(TrailerPath)) + String.IsEmpty(Player.FileNameAndPath)</expression>
     <expression name="TrailerIsPlaying">String.IsEqual(Window(home).Property(TrailerPath2),Player.FileNameAndPath) + !String.IsEmpty(Player.FileNameAndPath)</expression>
     <expression name="AutoTrailerDebugging">Skin.HasSetting(home.netflix.autoplay.trailer) + Skin.HasSetting(DebugInfo.extended) + Skin.HasSetting(DebugInfo.extended)</expression>
@@ -246,7 +246,7 @@
 
 
     <expression name="AKLGameBrowse">
-        $EXP[InGameMode]
+        String.StartsWith(Container.FolderPath,plugin://plugin.program.akl/)
     </expression>
 
     <expression name="SortLetterIsNumber">[String.IsEqual(ListItem.SortLetter,$NUMBER[0]) | String.IsEqual(ListItem.SortLetter,$NUMBER[1]) | String.IsEqual(ListItem.SortLetter,$NUMBER[2]) | String.IsEqual(ListItem.SortLetter,$NUMBER[3]) | String.IsEqual(ListItem.SortLetter,$NUMBER[4]) | String.IsEqual(ListItem.SortLetter,$NUMBER[5]) | String.IsEqual(ListItem.SortLetter,$NUMBER[6]) | String.IsEqual(ListItem.SortLetter,$NUMBER[7]) | String.IsEqual(ListItem.SortLetter,$NUMBER[8]) | String.IsEqual(ListItem.SortLetter,$NUMBER[9])]</expression>

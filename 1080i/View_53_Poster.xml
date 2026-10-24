@@ -73,7 +73,7 @@
                     <left>0</left>
                     <width>PosterW</width>
                     <height>640</height>
-                    <texture colordiffuse="Fallback" border="4" background="true" infill="false">common/box21.png</texture>
+                    <texture colordiffuse="Fallback" border="4" background="true">common/box.png</texture>
                     <visible>!$EXP[InGameMode]</visible>
                 </control>
                 <!-- Game/AKL poster: preserve existing custom sizing -->
@@ -82,7 +82,7 @@
                     <height>PosterH</height>
                     <aspectratio align="center" aligny="center" scalediffuse="false">keep</aspectratio>
                     <texture background="true">$VAR[PosterImage]</texture>
-                    <visible>$EXP[InGameMode]</visible>
+                    <visible>$EXP[InGameMode] + ![Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(seasons) | Container.Content(sets) | Container.Content(musicvideos) | Container.Content(videos)]</visible>
                 </control>
                 <!-- Movie/library poster: use the skin's original fitted poster treatment -->
                 <control type="image">
@@ -90,7 +90,7 @@
                     <height>PosterH</height>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                     <texture diffuse="diffuse/listposter.png" background="true">$VAR[PosterImage]</texture>
-                    <visible>!$EXP[InGameMode]</visible>
+                    <visible>!$EXP[InGameMode] | [Container.Content(movies) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(seasons) | Container.Content(sets) | Container.Content(musicvideos) | Container.Content(videos)]</visible>
                 </control>
                 <control type="image">
                     <width>PosterW</width>
