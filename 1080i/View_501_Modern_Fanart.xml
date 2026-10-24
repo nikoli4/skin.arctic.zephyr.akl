@@ -169,6 +169,8 @@
                         </control>
                         <control type="label">
                             <top>50</top>
+                            <animation effect="slide" end="0,510" time="0" condition="$EXP[AKLGameBrowse] + Skin.HasSetting(akl.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))">Conditional</animation>
+                            <visible>![$EXP[AKLGameBrowse] + Skin.HasSetting(akl.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(hidevotesfanart)]</visible>
                             <height>64</height>
                             <aligny>center</aligny>
                             <font>Small333</font>

@@ -94,6 +94,14 @@
                         <textcolor>Dark1</textcolor>
                         <selectedcolor>Dark1</selectedcolor>
                         <label>$VAR[LabelSub_1_GenreAlbum]</label>
+                        <visible>!$EXP[AKLGameBrowse]</visible>
+                    </control>
+                    <!-- AKL List V2: reserve space between ClearLogo and plot -->
+                    <control type="image">
+                        <height>40</height>
+                        <width>1</width>
+                        <texture></texture>
+                        <visible>$EXP[AKLGameBrowse]</visible>
                     </control>
                     <control type="textbox">
                         <font>Tiny</font>
@@ -108,6 +116,15 @@
                         <textcolor>Dark2</textcolor>
                         <selectedcolor>Dark2</selectedcolor>
                         <label>$VAR[LabelSub_2_YearDurationRating]</label>
+                    </control>
+                    <!-- AKL List V2: genre below year for all games -->
+                    <control type="label">
+                        <aligny>center</aligny>
+                        <font>Tiny</font>
+                        <textcolor>Dark1</textcolor>
+                        <selectedcolor>Dark1</selectedcolor>
+                        <label>$VAR[LabelGenre]</label>
+                        <visible>$EXP[AKLGameBrowse] + !String.IsEmpty(ListItem.Genre)</visible>
                     </control>
                 </control>
             </control>
