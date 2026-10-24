@@ -4047,10 +4047,34 @@
                 <visible>!String.IsEmpty(Control.GetLabel(6601))</visible>
                 <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.resolution)</visible>
             </control>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
-                <param name="Star" value="Flagstar" />
-                <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar1" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
                 <param name="color" value="Dark1" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar2" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="Dark1" />
+                <param name="left" value="-20" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar3" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="Dark1" />
+                <param name="left" value="-20" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar4" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="Dark1" />
+                <param name="left" value="-20" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar5" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="Dark1" />
+                <param name="left" value="-20" />
             </include>
             <control type="label" description="Rating">
                 <left>-6</left>
@@ -4172,9 +4196,34 @@
                 <visible>!String.IsEmpty(Control.GetLabel(6601))</visible>
                 <visible>Skin.HasSetting(furniture.flagicons) + !Skin.HasSetting(furniture.flags.resolution)</visible>
             </control>
-            <include content="Def_Flags_Furniture_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
-                <param name="Star" value="Flagstar" />
-                <param name="visible" value="!Skin.HasSetting(furniture.numericrating)" />
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar1" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="$VAR[ColorStars]" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar2" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="$VAR[ColorStars]" />
+                <param name="left" value="-20" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar3" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="$VAR[ColorStars]" />
+                <param name="left" value="-20" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar4" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="$VAR[ColorStars]" />
+                <param name="left" value="-20" />
+            </include>
+            <include content="Def_Flag_Small" condition="!Skin.HasSetting(furniture.flags.rating)">
+                <param name="Star" value="Flagstar5" />
+                <param name="visible" value="!Skin.HasSetting(furniture.numericrating) + ![$EXP[AKLGameBrowse] + Control.IsVisible(507)]" />
+                <param name="color" value="$VAR[ColorStars]" />
+                <param name="left" value="-20" />
             </include>
             <control type="label" description="Rating">
                 <left>-6</left>
