@@ -568,7 +568,7 @@
                     <label>Use ClearLogo instead of title</label>
                     <selected>Skin.HasSetting(akl.clearlogo.title)</selected>
                     <onclick>Skin.ToggleSetting(akl.clearlogo.title)</onclick>
-                    <visible>$EXP[AKLGameBrowse]</visible>
+                    <visible>$EXP[AKLGameBrowse] + ![Control.IsVisible(504) | Control.IsVisible(510) | Control.IsVisible(521) | Control.IsVisible(509) | Control.IsVisible(53)]</visible>
                 </control>
                 <control type="radiobutton" id="9194">
                     <include>DefContextButtonGradient</include>
