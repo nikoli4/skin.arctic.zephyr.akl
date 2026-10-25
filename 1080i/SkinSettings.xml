@@ -2030,6 +2030,16 @@
                             <left>385</left>
                             <texture>misc/matrix.png</texture>
                         </control>
+                        <control type="label">
+                            <description>AKL Edition branding subtitle</description>
+                            <width>1360</width>
+                            <height>38</height>
+                            <align>center</align>
+                            <aligny>center</aligny>
+                            <label>AKL EDITION</label>
+                            <font>Medium</font>
+                            <textcolor>$VAR[ColorHighlight]</textcolor>
+                        </control>
                         <control type="button" id="9907">
                             <width>1360</width>
                             <height>279</height>

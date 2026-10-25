@@ -85,6 +85,7 @@
             <!-- AKL Fanart: optionally use clearlogo in the title position -->
             <control type="image" description="AKL clearlogo title replacement">
                 <top>0</top>
+                <animation effect="slide" end="0,12" time="0" condition="$EXP[AKLGameBrowse] + Skin.HasSetting(akl.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))">Conditional</animation>
                 <left>0</left>
                 <width>500</width>
                 <height>120</height>
@@ -326,6 +327,7 @@
                         <!-- AKL Fanart: optionally use clearlogo in the title position -->
                         <control type="image" description="AKL clearlogo title replacement">
                             <top>0</top>
+                            <animation effect="slide" end="0,12" time="0" condition="$EXP[AKLGameBrowse] + Skin.HasSetting(akl.clearlogo.title) + !String.IsEmpty(ListItem.Art(clearlogo))">Conditional</animation>
                             <left>0</left>
                             <width>500</width>
                             <height>120</height>
