@@ -559,7 +559,7 @@
 
     <include name="Focuslayout_Pics_50">
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)">Animation.Focus.Zoom</include>
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]">Animation.Focus.Zoom</include>
             <control type="image">
                 <left>4</left>
                 <top>0</top>

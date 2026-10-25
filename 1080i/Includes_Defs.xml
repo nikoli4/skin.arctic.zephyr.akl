@@ -4793,9 +4793,9 @@
         <param name="glow_zoom" value="$PARAM[glow_zoom]" default="108"/>
         <definition>
         <control type="group">
-            <visible>Skin.HasSetting(items.focus.glow)</visible>
+            <visible>[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.glow)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.glow)]</visible>
             <animation center="auto" effect="zoom" end="$PARAM[glow_zoom]" start="100" time="0" condition="true">Conditional</animation>
-            <animation effect="fade" start="100" end="66" time="0" condition="Skin.HasSetting(items.focus.glow.low)">Conditional</animation>
+            <animation effect="fade" start="100" end="66" time="0" condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.glow.low)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.glow.low)]">Conditional</animation>
             <control type="image">
                 <left>$PARAM[glow_left]</left>
                 <top>$PARAM[glow_top]</top>
@@ -4823,7 +4823,7 @@
                 <bottom>0</bottom>
                 <height>$PARAM[glow_height]</height>
                 <texture colordiffuse="$VAR[ColorSquares]" border="20">common/selectbox2.png</texture>
-                <visible>Control.HasFocus($PARAM[id]) + Skin.HasSetting(items.focus.glow.full)</visible>
+                <visible>Control.HasFocus($PARAM[id]) + [[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.glow.full)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.glow.full)]]</visible>
                 <include>Animation.SelectBoxHome</include>
             </control>
             <control type="image">
@@ -4833,7 +4833,7 @@
                 <bottom>0</bottom>
                 <height>$PARAM[glow_height]</height>
                 <texture colordiffuse="$VAR[ColorHighlightSelectbox2]" border="20">common/gradient-selectbox2.png</texture>
-                <visible>Control.HasFocus($PARAM[id]) + Skin.HasSetting(items.focus.glow.full)</visible>
+                <visible>Control.HasFocus($PARAM[id]) + [[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.glow.full)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.glow.full)]]</visible>
                 <include>Animation.SelectBoxHome</include>
             </control>
         </control>
@@ -4850,7 +4850,7 @@
             <param name="id" value="$PARAM[id]" />
         </include>        
         <control type="group">
-            <visible>!Skin.HasSetting(items.focus.zoom)</visible>
+            <visible>![[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]]</visible>
             <control type="image">
                 <left>3</left>
                 <top>3</top>
@@ -4871,7 +4871,7 @@
             </control>
         </control>
         <control type="group">
-            <visible>Skin.HasSetting(items.focus.zoom)</visible>
+            <visible>[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]</visible>
             <control type="image">
                 <left>4</left>
                 <top>4</top>

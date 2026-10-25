@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Foundation -->
 <includes>
     <include file="Defaults.xml"/>
@@ -3849,7 +3849,7 @@
     </include>
 
     <include name="weatherlayoutwidgetsvertical.poster.focus">
-        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)"/>
+        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]"/>
         <definition>
         <control type="group">
             <include condition="$PARAM[zoom_condition]">Animation.Focus.Zoom</include>
@@ -3867,7 +3867,7 @@
     </include>
 
     <include name="weatherlayoutwidgetsvertical.square.focus">
-        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)"/>
+        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]"/>
         <definition>
         <control type="group">
             <include condition="$PARAM[zoom_condition]">Animation.Focus.Zoom</include>
@@ -3885,7 +3885,7 @@
     </include>
 
     <include name="weatherlayoutwidgetsvertical.fanart.focus">
-        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)"/>
+        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]"/>
         <definition>
         <control type="group">
             <include condition="$PARAM[zoom_condition]">Animation.Focus.Zoom</include>
@@ -4620,7 +4620,7 @@
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="visible_title_overlay" value="$PARAM[visible_title_overlay]" default="false"/>
         <param name="zoom" value="$PARAM[zoom]" default="120"/>
-        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="Skin.HasSetting(items.focus.zoom)"/>
+        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
@@ -4692,7 +4692,7 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)">Animation.Focus.Zoom</include>
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]">Animation.Focus.Zoom</include>
             <height>$PARAM[height]</height>
             <include content="def_widgetseason">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
@@ -4730,7 +4730,7 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)">Animation.Focus.Zoom</include>
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]">Animation.Focus.Zoom</include>
             <height>$PARAM[height]</height>
             <include content="def_widgetsquare">
                 <param name="aspectratio" value="$PARAM[aspectratio]"/>
@@ -4750,7 +4750,7 @@
 
     <include name="include.widget.square.system.focus">
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)">Animation.Focus.Zoom</include>
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]">Animation.Focus.Zoom</include>
             <include>def_widgetsquare_system</include>
             <include content="def_widgetfocus">
                 <param name="id" value="$PARAM[id]"/>
@@ -4783,7 +4783,7 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetfanart">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
@@ -4807,6 +4807,7 @@
         <param name="top" value="$PARAM[top]" default="305"/>
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <param name="zoom" value="$PARAM[zoom]" default="108"/>
+        <param name="zoom_condition" value="$PARAM[zoom_condition]" default="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]"/>
         <definition>
         <control type="group">
             <height>$PARAM[height]</height>
@@ -4822,7 +4823,7 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="$PARAM[zoom]" /></include>
+            <include condition="$PARAM[zoom_condition]" content="Animation.Focus.Zoom"><param name="zoom" value="$PARAM[zoom]" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetlandscape">
                 <param name="image" value="$PARAM[image]"/>
@@ -4846,7 +4847,7 @@
         <param name="reflections" value="$PARAM[reflections]" default="false"/>
         <definition>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetbanner">
                 <param name="indicatorbackground" value="$PARAM[indicatorbackground]" />
@@ -4896,7 +4897,7 @@
             </control>
         </control>
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]" content="Animation.Focus.Zoom"><param name="zoom" value="108" /></include>
             <height>$PARAM[height]</height>
             <include content="def_widgetthumb">
                 <param name="clearlogo" value="$PARAM[clearlogo]"/>
@@ -4922,7 +4923,7 @@
 
     <include name="include.widget.pvr.focus">
         <control type="group">
-            <include condition="Skin.HasSetting(items.focus.zoom)" content="Animation.Focus.Zoom">
+            <include condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(akl.items.focus.zoom)]" content="Animation.Focus.Zoom">
                 <param name="zoom" value="101" />
             </include>
             <include>def_widgetpvr</include>

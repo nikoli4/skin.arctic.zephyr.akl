@@ -626,7 +626,15 @@
                     <label>31562</label>
                     <selected>Skin.HasSetting(show.reflections)</selected>
                     <onclick>Skin.ToggleSetting(show.reflections)</onclick>
-                    <visible>Control.IsVisible(50) | Control.IsVisible(504) | Control.IsVisible(510) | Control.IsVisible(519) | Control.IsVisible(520) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524) | Control.IsVisible(514) | Control.IsVisible(509) | Control.IsVisible(53) | Control.IsVisible(527)</visible>
+                    <visible>Control.IsVisible(50) | Control.IsVisible(510) | Control.IsVisible(519) | Control.IsVisible(520) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(524) | Control.IsVisible(514) | Control.IsVisible(509) | Control.IsVisible(53) | Control.IsVisible(527)</visible>
+                </control>
+<control type="radiobutton" id="9180">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>31562</label>
+                    <selected>Skin.HasSetting(view.netflix.reflections)</selected>
+                    <onclick>Skin.ToggleSetting(view.netflix.reflections)</onclick>
+                    <visible>Control.IsVisible(504)</visible>
                 </control>
                 <control type="radiobutton" id="9082">
                     <include>DefContextButtonGradient</include>
@@ -635,6 +643,16 @@
                     <selected>Skin.HasSetting(items.focus.zoom)</selected>
                     <onclick>Skin.ToggleSetting(items.focus.zoom)</onclick>
                     <onclick>ReloadSkin()</onclick>
+                    <visible>!Control.IsVisible(504)</visible>
+                </control>
+<control type="radiobutton" id="9182">
+                    <include>DefContextButtonGradient</include>
+                    <align>left</align>
+                    <label>31585</label>
+                    <selected>Skin.HasSetting(view.netflix.focus.zoom)</selected>
+                    <onclick>Skin.ToggleSetting(view.netflix.focus.zoom)</onclick>
+                    <onclick>ReloadSkin()</onclick>
+                    <visible>Control.IsVisible(504)</visible>
                 </control>
                 <control type="button" id="9083">
                     <include>DefContextButtonGradient</include>

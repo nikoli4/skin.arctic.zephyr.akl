@@ -33,7 +33,7 @@
                     <include content="include.widget.poster">
                         <param name="id" value="55"/>
                         <param name="height" value="660"/>
-                        <param name="reflections" value="Skin.HasSetting(show.reflections)"/>
+                        <param name="reflections" value="[!$EXP[AKLGameBrowse] + Skin.HasSetting(show.reflections)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(view.akl.bigposter.reflections)]"/>
                         <param name="top" value="640"/>
                         <param name="height_reflection" value="660"/>
                     </include>
@@ -43,7 +43,7 @@
         <focusedlayout width="300">
             <control type="group">
                 <posy>120</posy>
-                <animation effect="zoom" start="100" end="120" time="200" tween="sine" easing="inout" center="auto" condition="Skin.HasSetting(items.focus.zoom)">Conditional</animation>
+                <animation effect="zoom" start="100" end="120" time="200" tween="sine" easing="inout" center="auto" condition="[!$EXP[AKLGameBrowse] + Skin.HasSetting(items.focus.zoom)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(view.akl.bigposter.focus.zoom)]">Conditional</animation>
                 <animation condition="Container(53).OnNext | Container(53).OnPrevious" effect="zoom" start="60" end="100" delay="0" time="350" tween="sine" easing="out" center="213,276">Focus</animation>
                 <animation condition="Container(53).OnNext | Container(53).OnPrevious" effect="zoom" start="100" end="60" delay="0" time="250" tween="sine" easing="out" center="213,282">UnFocus</animation>
                 <control type="image">
@@ -52,7 +52,7 @@
                     <height>PosterH</height>
                     <aspectratio align="center" aligny="center" scalediffuse="false">scale</aspectratio>
                     <texture flipy="true" diffuse="diffuse/listposter-ref-widgets.png" background="true">$VAR[PosterImage]</texture>
-                    <visible>Skin.HasSetting(show.reflections)</visible>
+                    <visible>[!$EXP[AKLGameBrowse] + Skin.HasSetting(show.reflections)] | [$EXP[AKLGameBrowse] + Skin.HasSetting(view.akl.bigposter.reflections)]</visible>
                 </control>
                 <control type="image">
                     <centertop>PosterH</centertop>
