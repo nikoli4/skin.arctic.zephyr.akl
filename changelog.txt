@@ -1,3 +1,10 @@
+[B]3.0.14[/B]
+Fixed AKL Big Poster rendering and isolated game trailer behavior from Movies/TV
+Fixed duplicate ClearLogo settings and refined Fanart ClearLogo positioning
+Corrected AKL genre positioning in Fanart, Modern Fanart, and List V2
+Improved independent AKL focus and view customization settings
+Added AKL Edition branding to startup and skin settings
+
 [B]3.0.13[/B]
 Added optional AKL controller artwork in the header
 Added controller glass overlay for AKL header artwork
