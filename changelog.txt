@@ -1,3 +1,7 @@
+[B]3.0.17[/B]
+
+Improved AKL trailer playback by safely escaping trailer paths and preventing playback from resuming at a previously saved position.
+
 [B]3.0.16[/B]
 
 Updated the AKL Edition release version and metadata.

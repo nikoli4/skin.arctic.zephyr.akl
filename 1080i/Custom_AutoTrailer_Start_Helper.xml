@@ -13,6 +13,6 @@
     <onload>SetProperty(AKLTrailerPath,$INFO[ListItem.Trailer],home)</onload>
 
     <!-- Start Trailer -->
-    <onload>PlayMedia($INFO[ListItem.Trailer],1)</onload>
+    <onload>PlayMedia($ESCINFO[ListItem.Trailer],1,noresume)</onload>
     <controls />
 </window>
